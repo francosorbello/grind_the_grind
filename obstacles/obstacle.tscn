@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://barbta3ptwvg1"]
+
+[ext_resource type="Script" uid="uid://dk7kb6x1yy8y1" path="res://obstacles/obstacle.gd" id="1_5rvb3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8btp0"]
+size = Vector3(2.9314, 1, 1)
+
+[node name="Obstacle" type="Area3D"]
+script = ExtResource("1_5rvb3")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+size = Vector3(2.87445, 1, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_8btp0")
+
+[node name="Timer" type="Timer" parent="."]

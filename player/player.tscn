@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvatelahibnjl"]
+
+[ext_resource type="PackedScene" uid="uid://c3itpu6mcpoxw" path="res://player/player_model.tscn" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://blqtmgtug40cy" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="PackedScene" uid="uid://cblcve3y4oao1" path="res://Models/GLB format/skateboard.glb" id="2_g1dw6"]
+[ext_resource type="AudioStream" uid="uid://21fecvomeuc2" path="res://player/ugly_grind.mp3" id="4_yw30f"]
+[ext_resource type="AudioStream" uid="uid://dtgr2yy7lnnfd" path="res://player/jump.mp3" id="5_qjkh3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g1dw6"]
+radius = 0.332925
+height = 0.996357
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_rkbax")
+
+[node name="Model" parent="." instance=ExtResource("1_oul6g")]
+
+[node name="skateboard2" parent="Model" instance=ExtResource("2_g1dw6")]
+transform = Transform3D(-0.123428, 0, -0.992353, 0, 1, 0, 0.992353, 0, -0.123428, 0, -0.123121, 0)
+
+[node name="Area3D" type="Area3D" parent="Model"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.326359, 0)
+shape = SubResource("CapsuleShape3D_g1dw6")
+
+[node name="AirTimeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Sounds" type="Node3D" parent="."]
+
+[node name="GrindSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("4_yw30f")
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_qjkh3")

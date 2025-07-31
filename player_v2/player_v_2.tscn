@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0sh2cio2o5o7"]
+
+[ext_resource type="Script" uid="uid://bx0x6pv38jxwy" path="res://player_v2/player_v_2.gd" id="1_35gxn"]
+
+[sub_resource type="Curve" id="Curve_35gxn"]
+_data = [Vector2(0, 0), 0.0, 5.30879, 0, 0, Vector2(0.507987, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.16618, 0.0, 0, 0]
+point_count = 3
+
+[node name="PlayerV2" type="Node3D"]
+script = ExtResource("1_35gxn")
+path_curve = SubResource("Curve_35gxn")
+
+[node name="PathFollower" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="PathFollower"]

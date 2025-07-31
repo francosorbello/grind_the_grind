@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3itpu6mcpoxw"]
+
+[ext_resource type="PackedScene" uid="uid://cgb52i2a2634r" path="res://Models/GLB format/character-skate-boy.glb" id="1_70xuj"]
+
+[node name="character-skate-boy2" instance=ExtResource("1_70xuj")]
+
+[node name="Skeleton3D" parent="." index="0"]
+bones/1/rotation = Quaternion(0, 0.0871557, 0, 0.996195)
+bones/2/position = Vector3(0.105, 0.222, 0.001)
+bones/2/rotation = Quaternion(0.231577, 0.29533, -0.0740215, 0.923944)
+bones/3/position = Vector3(-0.079, 0.212, 0.012)
+bones/3/rotation = Quaternion(0.365213, -0.160257, -0.0889828, 0.912699)
+bones/4/rotation = Quaternion(-0.0682583, 0, 0, 0.997668)
+bones/5/rotation = Quaternion(0.0160505, -0.00144241, -0.0019829, 0.999868)
+bones/6/rotation = Quaternion(-0.019877, -0.0137706, -0.0180712, 0.999544)
+bones/7/rotation = Quaternion(0.0259703, -0.499325, -0.0449819, 0.864856)
+
+[node name="leg-left" parent="Skeleton3D" index="0"]
+transform = Transform3D(0.701507, 0.336128, 0.628416, -1.78814e-07, 0.881786, -0.47165, -0.712663, 0.330866, 0.618579, 0.103578, 0.222, -0.0172482)
+
+[node name="leg-right" parent="Skeleton3D" index="1"]
+transform = Transform3D(0.95814, 0.1654, -0.23369, -0.279485, 0.717403, -0.638139, 0.0621018, 0.676739, 0.733599, -0.075716, 0.212, 0.0255359)
+
+[node name="torso" parent="Skeleton3D" index="2"]
+transform = Transform3D(0.984808, -0.0236505, 0.17203, 0, 0.990682, 0.136198, -0.173648, -0.134129, 0.975631, -0.00499238, 0.17625, -0.0283132)
+
+[node name="arm-left" parent="Skeleton3D" index="3"]
+transform = Transform3D(0.985376, -0.0142561, 0.169796, -0.00359001, 0.994536, 0.104335, -0.170356, -0.103419, 0.97994, 0.092728, 0.288277, -0.0493957)
+
+[node name="arm-right" parent="Skeleton3D" index="4"]
+transform = Transform3D(0.989492, 0.00574967, 0.144474, -0.0313998, 0.983908, 0.175898, -0.141138, -0.178586, 0.973749, -0.10403, 0.288277, -0.014702)
+
+[node name="head" parent="Skeleton3D" index="5"]
+transform = Transform3D(0.640379, 0.0430152, -0.766854, 0.0145403, 0.997573, 0.0680991, 0.767922, -0.0547595, 0.638199, -0.00440236, 0.345288, -0.0249671)
+
+[node name="hat" parent="Skeleton3D" index="6"]
+transform = Transform3D(0.640379, 0.0430152, -0.766854, 0.0145403, 0.997573, 0.0680991, 0.767922, -0.0547595, 0.638199, -0.0314125, 0.542234, -0.00617206)
