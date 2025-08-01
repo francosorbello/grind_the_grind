@@ -19,7 +19,7 @@ radius = 0.332925
 height = 0.996357
 
 [sub_resource type="Curve" id="Curve_yllr7"]
-_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+_data = [Vector2(0, 0), 0.0, 2.80963, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Player" type="Node3D"]
@@ -52,6 +52,7 @@ stream = ExtResource("6_2ieo8")
 [node name="JumpingState" type="Node" parent="StateMachine"]
 script = ExtResource("8_rgyib")
 jump_curve = SubResource("Curve_yllr7")
+jump_travel_time = 0.3
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="StateMachine/JumpingState"]
 stream = ExtResource("8_ebec5")
