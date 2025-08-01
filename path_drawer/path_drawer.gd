@@ -11,8 +11,9 @@ func _ready() -> void:
     else:
         print("Path initialized with ", len(_points), " points.")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
     for point in _points:
         # Draw each point in the path for debugging
-        DebugDraw3D.draw_sphere(point, 0.1, Color(1, 0, 0,0))  # Red spheres for points
+        # DebugDraw3D.draw_sphere(point, 0.1, Color(1, 0, 0,0))  # Red spheres for points
+        pass
     # 	# Uncomment the next line to draw lines between points

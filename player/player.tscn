@@ -19,9 +19,9 @@ air_time = 0.6
 [node name="skateboard2" parent="Model" instance=ExtResource("2_g1dw6")]
 transform = Transform3D(-0.123428, 0, -0.992353, 0, 1, 0, 0.992353, 0, -0.123428, 0, -0.123121, 0)
 
-[node name="Area3D" type="Area3D" parent="Model"]
+[node name="PlayerCollider" type="Area3D" parent="Model"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/PlayerCollider"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.326359, 0)
 shape = SubResource("CapsuleShape3D_g1dw6")
 

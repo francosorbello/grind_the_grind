@@ -9,6 +9,5 @@ func _ready():
     $Timer.start(alert_timeout)
 
 func _on_timeout() -> void:
-    print("Alert expired")
     on_alert_expired.emit(self)
     queue_free()  # Remove the alert symbol after timeout

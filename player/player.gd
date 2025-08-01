@@ -21,7 +21,6 @@ func _physics_process(delta: float) -> void:
 	if _jumping:
 		player_model.position.y += jump_speed * delta  # Move up while jumping
 		if player_model.position.y >= jump_height:
-			print("Reached jump height")
 			_jumping = false  # Stop jumping when reaching the height
 			air_time_timer.start(air_time)  # Start the timer for air time
 			
@@ -30,7 +29,6 @@ func _physics_process(delta: float) -> void:
 		if player_model.position.y <= 0:  # Reset position when landing
 			player_model.position.y = 0
 			_falling = false
-			print("Landed")
 			$Sounds/GrindSound.play()  # Resume grind sound when landing
 
 func _process(_delta: float) -> void:
@@ -46,3 +44,8 @@ func jump() -> void:
 func _on_air_time_timeout() -> void:
 	# This function can be used to handle the end of the jump
 	_falling = true
+
+func die():
+	$Sounds/GrindSound.stop()  # Stop the grind sound on death
+	_falling = false
+	_jumping = false

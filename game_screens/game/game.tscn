@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bocig7usld53w"]
+[gd_scene load_steps=12 format=3 uid="uid://bocig7usld53w"]
 
 [ext_resource type="PackedScene" uid="uid://duavsxyyq1h2j" path="res://obstacles/obstacle_generator.tscn" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://cvatelahibnjl" path="res://player/player.tscn" id="1_l1rk1"]
+[ext_resource type="Script" uid="uid://bp2gijcc1enr5" path="res://game_screens/game/game.gd" id="1_txhlf"]
 [ext_resource type="Script" uid="uid://dfkq4o22ymhr1" path="res://game_screens/game/grind_path.gd" id="1_vasa2"]
+[ext_resource type="PackedScene" uid="uid://bcwfm3mw5710y" path="res://game_screens/end/end.tscn" id="2_cxkev"]
 [ext_resource type="Script" uid="uid://crx6mk28wv1s2" path="res://game_screens/game/path_visual.gd" id="4_ryayy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vasa2"]
@@ -32,7 +34,10 @@ _data = {
 }
 point_count = 4
 
-[node name="Game" type="Node3D"]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_txhlf")
+lose_screen = ExtResource("2_cxkev")
+player = NodePath("GrindPath/PathFollow3D/Player")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)

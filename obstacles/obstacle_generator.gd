@@ -22,7 +22,8 @@ func _ready():
 	spawn_timer.timeout.connect(on_spawn_timer_timeout)
 	spawn_timer.wait_time = spawn_interval
 
-	spawn_timer.start()
+	start()
+
 
 func on_spawn_timer_timeout() -> void:
 	if _path_points.size() == 0:
@@ -45,7 +46,13 @@ func _spawn_obstacle():
 	obstacle_instance.position = _spawn_position + Vector3(0, height_offset, 0)  # Adjust height if necessary
 	add_child(obstacle_instance)
 	obstacle_instance.look_at(position)
+
 	obstacle_instance.on_despawn_countdown_reached.connect(_on_despawn_reached)
+	obstacle_instance.on_player_collision.connect(_on_player_collision)
+
+func _on_player_collision(_area : Node3D) -> void:
+	get_parent().lose_game()
+	pass
 
 func _spawn_alert():
 	# setup alert
@@ -57,3 +64,13 @@ func _spawn_alert():
 func _on_alert_timeout(_alert : Node3D) -> void:
 	_spawn_obstacle()
 	spawn_timer.start()  # Restart the spawn timer after alert timeout
+
+func start() -> void:
+	spawn_timer.start()
+
+func stop() -> void:
+	spawn_timer.stop()
+	alert_timer.stop()
+	for child in get_children():
+		if child is Node3D:
+			child.queue_free()  # Free all child obstacles and alerts

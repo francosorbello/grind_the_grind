@@ -15,6 +15,5 @@ func _ready():
     start_scene.name = current_scene
 
 func change_scene(new_scene: String):
-    print("Changing scene to:", new_scene)
     if new_scene in game_scenes:
         IndieBlueprintSceneTransitioner.transition_to(game_scenes[new_scene].resource_path)
