@@ -1,10 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvatelahibnjl"]
+[gd_scene load_steps=12 format=3 uid="uid://cvatelahibnjl"]
 
 [ext_resource type="PackedScene" uid="uid://c3itpu6mcpoxw" path="res://player/player_model.tscn" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://blqtmgtug40cy" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="PackedScene" uid="uid://cblcve3y4oao1" path="res://Models/GLB format/skateboard.glb" id="2_g1dw6"]
 [ext_resource type="AudioStream" uid="uid://21fecvomeuc2" path="res://player/ugly_grind.mp3" id="4_yw30f"]
 [ext_resource type="AudioStream" uid="uid://dtgr2yy7lnnfd" path="res://player/jump.mp3" id="5_qjkh3"]
+[ext_resource type="Script" uid="uid://dybilg3xaqjtm" path="res://addons/ftr_tools/sm/state_machine.gd" id="6_g6k8r"]
+[ext_resource type="Script" uid="uid://c4hyjlkn4wjai" path="res://player/states/grind_state.gd" id="7_boad6"]
+[ext_resource type="Script" uid="uid://cp0a6k0rgs0oe" path="res://player/states/jumping_state.gd" id="8_rgyib"]
+[ext_resource type="Script" uid="uid://bwy28vxbwgmir" path="res://player/states/falling_state.gd" id="9_hg6s5"]
+[ext_resource type="Script" uid="uid://ca5b2et3hhy34" path="res://player/states/on_air_state.gd" id="10_8t03j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g1dw6"]
 radius = 0.332925
@@ -12,7 +17,6 @@ height = 0.996357
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_rkbax")
-air_time = 0.6
 
 [node name="Model" parent="." instance=ExtResource("1_oul6g")]
 
@@ -25,13 +29,30 @@ transform = Transform3D(-0.123428, 0, -0.992353, 0, 1, 0, 0.992353, 0, -0.123428
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.326359, 0)
 shape = SubResource("CapsuleShape3D_g1dw6")
 
-[node name="AirTimeTimer" type="Timer" parent="."]
-one_shot = true
-
 [node name="Sounds" type="Node3D" parent="."]
 
-[node name="GrindSound" type="AudioStreamPlayer" parent="Sounds"]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("6_g6k8r")
+initial_state = NodePath("GrindState")
+metadata/_custom_type_script = "uid://dybilg3xaqjtm"
+
+[node name="GrindState" type="Node" parent="StateMachine"]
+script = ExtResource("7_boad6")
+
+[node name="GrindSound" type="AudioStreamPlayer" parent="StateMachine/GrindState"]
 stream = ExtResource("4_yw30f")
 
-[node name="JumpSound" type="AudioStreamPlayer" parent="Sounds"]
+[node name="JumpingState" type="Node" parent="StateMachine"]
+script = ExtResource("8_rgyib")
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="StateMachine/JumpingState"]
 stream = ExtResource("5_qjkh3")
+
+[node name="FallingState" type="Node" parent="StateMachine"]
+script = ExtResource("9_hg6s5")
+
+[node name="OnAirState" type="Node" parent="StateMachine"]
+script = ExtResource("10_8t03j")
+
+[node name="AirTimeTimer" type="Timer" parent="StateMachine/OnAirState"]
+one_shot = true
