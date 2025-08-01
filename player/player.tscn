@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cvatelahibnjl"]
+[gd_scene load_steps=17 format=3 uid="uid://cvatelahibnjl"]
 
 [ext_resource type="PackedScene" uid="uid://c3itpu6mcpoxw" path="res://player/player_model.tscn" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://blqtmgtug40cy" path="res://player/player.gd" id="1_rkbax"]
@@ -20,6 +20,10 @@ height = 0.996357
 
 [sub_resource type="Curve" id="Curve_yllr7"]
 _data = [Vector2(0, 0), 0.0, 2.80963, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_kb6p2"]
+_data = [Vector2(0.00615384, 1), 0.0, -3.29392, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Player" type="Node3D"]
@@ -59,6 +63,8 @@ stream = ExtResource("8_ebec5")
 
 [node name="FallingState" type="Node" parent="StateMachine"]
 script = ExtResource("9_hg6s5")
+fall_travel_time = 0.17
+fall_curve = SubResource("Curve_kb6p2")
 
 [node name="FallSound" type="AudioStreamPlayer" parent="StateMachine/FallingState"]
 stream = ExtResource("10_ebec5")

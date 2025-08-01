@@ -6,7 +6,6 @@ extends State
 var _final_height : float = 0.0
 var _sample_point : float = 0.0
 
-
 func enter():
     $JumpSound.play()
     owner.do_grab_anim()  # Play grab animation when entering the on-air state
@@ -15,10 +14,6 @@ func enter():
 func exit():
     _sample_point = 0.0  # Reset the sample point when exiting the state
 
-# func pyhsics_update(delta: float) -> void:
-#     owner.player_model.position.y += owner.jump_speed * delta  # Move up while jumping
-#     if owner.player_model.position.y >= owner.jump_height:
-#         state_machine.transition_to("OnAirState")  # Transition to FallingState when reaching the height
 
 func pyhsics_update(delta: float) -> void:
     # sample the jump curve and multiply by the jump height to get the current vertical position
