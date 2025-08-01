@@ -1,5 +1,7 @@
 extends State
 
+func exit():
+    $FallSound.play()
 
 func pyhsics_update(delta : float) -> void:
     # This function is called every physics frame

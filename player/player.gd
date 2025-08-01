@@ -7,6 +7,8 @@ extends Node3D
 @onready var player_model : Node3D = $Model
 
 var model_anim_player : AnimationPlayer
+var last_trick_time : float = 0.0
+var trick_timeout : float = 0.2
 
 var trick_moves : Dictionary[int, ScoreManager.TrickType] = {
 	KEY_Z: ScoreManager.TrickType.TRICK_Z,
@@ -20,8 +22,11 @@ func _ready():
 func die():
 	pass
 
-func do_trick(trick_type : ScoreManager.TrickType ) -> float:
+func do_trick(_trick_type : ScoreManager.TrickType ) -> float:
+	if not can_do_trick():
+		return -1.0
 	# print("doing trick ",trick_type)
+	last_trick_time = Time.get_ticks_msec() / 1000.0
 	var prev_anim = model_anim_player.current_animation
 	$TrickHitSound.play()
 	model_anim_player.play("fall")
@@ -33,3 +38,11 @@ func do_grab_anim():
 
 func do_grind_anim():
 	model_anim_player.play("skate-air")
+
+func can_do_trick() -> bool:
+	var current_time = Time.get_ticks_msec() / 1000.0
+	var result : bool = (current_time - last_trick_time) > trick_timeout
+	if result:
+		print(current_time - last_trick_time)
+	
+	return result

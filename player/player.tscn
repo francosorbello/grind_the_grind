@@ -1,20 +1,26 @@
-[gd_scene load_steps=13 format=3 uid="uid://cvatelahibnjl"]
+[gd_scene load_steps=16 format=3 uid="uid://cvatelahibnjl"]
 
 [ext_resource type="PackedScene" uid="uid://c3itpu6mcpoxw" path="res://player/player_model.tscn" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://blqtmgtug40cy" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="PackedScene" uid="uid://cblcve3y4oao1" path="res://Models/GLB format/skateboard.glb" id="2_g1dw6"]
-[ext_resource type="AudioStream" uid="uid://21fecvomeuc2" path="res://player/ugly_grind.mp3" id="4_yw30f"]
 [ext_resource type="AudioStream" uid="uid://dtgr2yy7lnnfd" path="res://player/jump.mp3" id="5_qjkh3"]
+[ext_resource type="AudioStream" uid="uid://dkj7ggt0ewxa4" path="res://player/nicer_grind.ogg" id="6_2ieo8"]
 [ext_resource type="Script" uid="uid://dybilg3xaqjtm" path="res://addons/ftr_tools/sm/state_machine.gd" id="6_g6k8r"]
 [ext_resource type="Script" uid="uid://c4hyjlkn4wjai" path="res://player/states/grind_state.gd" id="7_boad6"]
+[ext_resource type="AudioStream" uid="uid://dty6vqpofswch" path="res://player/fall.ogg" id="8_ebec5"]
 [ext_resource type="Script" uid="uid://cp0a6k0rgs0oe" path="res://player/states/jumping_state.gd" id="8_rgyib"]
 [ext_resource type="Script" uid="uid://bwy28vxbwgmir" path="res://player/states/falling_state.gd" id="9_hg6s5"]
 [ext_resource type="Script" uid="uid://ca5b2et3hhy34" path="res://player/states/on_air_state.gd" id="10_8t03j"]
+[ext_resource type="AudioStream" uid="uid://clpr7406lo1mm" path="res://player/nicer_kick.ogg" id="10_ebec5"]
 [ext_resource type="AudioStream" uid="uid://cmwkotf5arx0d" path="res://player/trick_hit.mp3" id="11_2ieo8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g1dw6"]
 radius = 0.332925
 height = 0.996357
+
+[sub_resource type="Curve" id="Curve_yllr7"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_rkbax")
@@ -41,22 +47,30 @@ metadata/_custom_type_script = "uid://dybilg3xaqjtm"
 script = ExtResource("7_boad6")
 
 [node name="GrindSound" type="AudioStreamPlayer" parent="StateMachine/GrindState"]
-stream = ExtResource("4_yw30f")
+stream = ExtResource("6_2ieo8")
 
 [node name="JumpingState" type="Node" parent="StateMachine"]
 script = ExtResource("8_rgyib")
+jump_curve = SubResource("Curve_yllr7")
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="StateMachine/JumpingState"]
-stream = ExtResource("5_qjkh3")
+stream = ExtResource("8_ebec5")
 
 [node name="FallingState" type="Node" parent="StateMachine"]
 script = ExtResource("9_hg6s5")
 
+[node name="FallSound" type="AudioStreamPlayer" parent="StateMachine/FallingState"]
+stream = ExtResource("10_ebec5")
+
 [node name="OnAirState" type="Node" parent="StateMachine"]
 script = ExtResource("10_8t03j")
+air_time = 0.75
 
 [node name="AirTimeTimer" type="Timer" parent="StateMachine/OnAirState"]
 one_shot = true
+
+[node name="KickDownSound" type="AudioStreamPlayer" parent="StateMachine/OnAirState"]
+stream = ExtResource("5_qjkh3")
 
 [node name="TrickHitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_2ieo8")
