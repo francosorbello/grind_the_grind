@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://cg6n04w6w1n3l"]
+[gd_scene load_steps=3 format=3 uid="uid://cg6n04w6w1n3l"]
+
+[ext_resource type="Texture2D" uid="uid://f8bwo3qqpqpw" path="res://alerts/shitty_alert.png" id="1_s8y2p"]
+[ext_resource type="Script" uid="uid://1gxwluo2udx7" path="res://alerts/alert_symbol.gd" id="2_8b8xw"]
 
 [node name="AlertSymbol" type="Sprite3D"]
+texture = ExtResource("1_s8y2p")
+script = ExtResource("2_8b8xw")
+
+[node name="Timer" type="Timer" parent="."]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://lsx7l8qdilfr"]
+
+[ext_resource type="Script" uid="uid://cnfosdlgqkk40" path="res://cameras/camera_manager.gd" id="1_o14l4"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o14l4"]
+
+[node name="CameraManager" type="Node" groups=["camera_manager"]]
+script = ExtResource("1_o14l4")
+noise = SubResource("FastNoiseLite_o14l4")

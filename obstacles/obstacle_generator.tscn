@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://duavsxyyq1h2j"]
+[gd_scene load_steps=4 format=3 uid="uid://duavsxyyq1h2j"]
 
 [ext_resource type="Script" uid="uid://c84fyd5fp1wx3" path="res://obstacles/obstacle_generator.gd" id="1_bmgho"]
 [ext_resource type="PackedScene" uid="uid://barbta3ptwvg1" path="res://obstacles/obstacle.tscn" id="2_5noe6"]
+[ext_resource type="PackedScene" uid="uid://cg6n04w6w1n3l" path="res://alerts/alert_symbol.tscn" id="3_r68pn"]
 
 [node name="ObstacleGenerator" type="Node3D"]
 script = ExtResource("1_bmgho")
 obstacle_scenes = Array[PackedScene]([ExtResource("2_5noe6")])
+alert_scene = ExtResource("3_r68pn")
 
 [node name="NextObstacleTimer" type="Timer" parent="."]
 one_shot = true

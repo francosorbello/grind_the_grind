@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=3 uid="uid://bocig7usld53w"]
+
+[ext_resource type="PackedScene" uid="uid://duavsxyyq1h2j" path="res://obstacles/obstacle_generator.tscn" id="1_h7iqs"]
+[ext_resource type="PackedScene" uid="uid://cvatelahibnjl" path="res://player/player.tscn" id="1_l1rk1"]
+[ext_resource type="Script" uid="uid://dfkq4o22ymhr1" path="res://game_screens/game/grind_path.gd" id="1_vasa2"]
+[ext_resource type="Script" uid="uid://crx6mk28wv1s2" path="res://game_screens/game/path_visual.gd" id="4_ryayy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vasa2"]
+sky_top_color = Color(0.996078, 0.921569, 0.964706, 1)
+sky_horizon_color = Color(1.22686, 1.20048, 1.20226, 1)
+ground_horizon_color = Color(1.22686, 1.20048, 1.20226, 1)
+
+[sub_resource type="Sky" id="Sky_h7iqs"]
+sky_material = SubResource("ProceduralSkyMaterial_vasa2")
+
+[sub_resource type="Environment" id="Environment_4fuuu"]
+background_mode = 1
+background_color = Color(0.407843, 0.498039, 0.898039, 1)
+sky = SubResource("Sky_h7iqs")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mq7fr"]
+shading_mode = 0
+albedo_color = Color(0.921569, 0.839216, 0.984314, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_l1rk1"]
+closed = true
+bake_interval = 0.01
+_data = {
+"points": PackedVector3Array(-0.966596, 0, 0.792071, 0.966596, 0, -0.792071, -2.43603, 5.53131e-05, -2.81723, -1.36629, 0, -1.31279, 1.36629, 0, 1.31279, 2.35973, 5.53131e-05, -2.92177, 1.921, 0, -1.66842, -1.921, 0, 1.66842, 2.61175, 5.53131e-05, 2.23054, 1.11802, 0, 1.78165, -1.11802, 0, -1.78165, -2.89501, 5.53131e-05, 1.80769),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="Game" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_energy = 0.3
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4fuuu")
+
+[node name="Floor" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_mq7fr")
+size = Vector3(10, 0.1, 10)
+
+[node name="Camera3D" type="Camera3D" parent="." groups=["camera"]]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 75.59, 75)
+current = true
+fov = 4.0
+size = 11.476
+
+[node name="ObstacleGenerator" parent="." node_paths=PackedStringArray("path") instance=ExtResource("1_h7iqs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.297629, 0.865234, 0)
+path = NodePath("../GrindPath")
+height_offset = -0.1
+
+[node name="GrindPath" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.833929, 0)
+curve = SubResource("Curve3D_l1rk1")
+script = ExtResource("1_vasa2")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="GrindPath"]
+transform = Transform3D(0.633819, 0, -0.773475, 0, 1, 0, 0.773475, 0, 0.633819, -2.37265, 0.100055, -2.73988)
+h_offset = 0.1
+v_offset = 0.1
+tilt_enabled = false
+
+[node name="Player" parent="GrindPath/PathFollow3D" instance=ExtResource("1_l1rk1")]
+transform = Transform3D(-0.985145, 0, -0.171723, 0, 1, 0, 0.171723, 0, -0.985145, 0.0585818, 0, 0.12579)
+
+[node name="PathVisual" type="CSGPolygon3D" parent="GrindPath" node_paths=PackedStringArray("path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.844416, 0.134206)
+polygon = PackedVector2Array(0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0)
+mode = 2
+path_node = NodePath("")
+path_interval_type = 0
+path_interval = 0.66
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+script = ExtResource("4_ryayy")
+path = NodePath("..")
