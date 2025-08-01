@@ -7,9 +7,9 @@ signal on_alert_expired(alert : Node3D)
 func _ready():
     $Timer.timeout.connect(_on_timeout)
     $Timer.start(alert_timeout)
-    var current_color : Color = modulate
+    var _current_color : Color = modulate
     var tween := create_tween()
-    tween.tween_property(self, "modulate", Color(current_color.r, current_color.g, current_color.b, 1), alert_timeout)
+    tween.tween_property(self, "modulate", Color.WHITE, alert_timeout) #Color(current_color.r, current_color.g, current_color.b, 1), alert_timeout)
 
 func _on_timeout() -> void:
     on_alert_expired.emit(self)

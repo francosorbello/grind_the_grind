@@ -61,7 +61,6 @@ size = 11.476
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.297629, 0.865234, 0)
 path = NodePath("../GrindPath")
 height_offset = -0.1
-obstacles_enabled = false
 
 [node name="GrindPath" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.833929, 0)

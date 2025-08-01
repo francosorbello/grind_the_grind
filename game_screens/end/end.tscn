@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bcwfm3mw5710y"]
+[gd_scene load_steps=2 format=3 uid="uid://bcwfm3mw5710y"]
+
+[ext_resource type="Script" uid="uid://b6cwysyd16c11" path="res://game_screens/end/end_controller.gd" id="1_6hflv"]
 
 [node name="End" type="Control"]
 layout_mode = 3
@@ -23,3 +25,24 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "You lost
 "
+
+[node name="EndController" type="Node" parent="."]
+script = ExtResource("1_6hflv")
+game_s = "res://game_screens/game/game.tscn"
+
+[node name="ResetButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = 17.0
+offset_right = 27.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESET"
+
+[connection signal="pressed" from="ResetButton" to="EndController" method="_on_reset_button_pressed"]
