@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvatelahibnjl"]
+[gd_scene load_steps=13 format=3 uid="uid://cvatelahibnjl"]
 
 [ext_resource type="PackedScene" uid="uid://c3itpu6mcpoxw" path="res://player/player_model.tscn" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://blqtmgtug40cy" path="res://player/player.gd" id="1_rkbax"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cp0a6k0rgs0oe" path="res://player/states/jumping_state.gd" id="8_rgyib"]
 [ext_resource type="Script" uid="uid://bwy28vxbwgmir" path="res://player/states/falling_state.gd" id="9_hg6s5"]
 [ext_resource type="Script" uid="uid://ca5b2et3hhy34" path="res://player/states/on_air_state.gd" id="10_8t03j"]
+[ext_resource type="AudioStream" uid="uid://cmwkotf5arx0d" path="res://player/trick_hit.mp3" id="11_2ieo8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g1dw6"]
 radius = 0.332925
@@ -56,3 +57,6 @@ script = ExtResource("10_8t03j")
 
 [node name="AirTimeTimer" type="Timer" parent="StateMachine/OnAirState"]
 one_shot = true
+
+[node name="TrickHitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_2ieo8")

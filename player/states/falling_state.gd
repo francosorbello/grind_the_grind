@@ -1,7 +1,5 @@
 extends State
 
-func enter():
-    print("Entering FallingState")
 
 func pyhsics_update(delta : float) -> void:
     # This function is called every physics frame

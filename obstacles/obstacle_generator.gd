@@ -3,6 +3,8 @@ extends Node3D
 @export var path : Path3D
 @export var height_offset : float = 0.5
 
+@export var obstacles_enabled : bool = true
+
 @export_group("Scenes")
 @export var obstacle_scenes : Array[PackedScene]
 @export var alert_scene : PackedScene
@@ -21,8 +23,8 @@ func _ready():
 	_path_points = path.get_curve().get_baked_points()
 	spawn_timer.timeout.connect(on_spawn_timer_timeout)
 	spawn_timer.wait_time = spawn_interval
-
-	start()
+	if obstacles_enabled:
+		start()
 
 
 func on_spawn_timer_timeout() -> void:
