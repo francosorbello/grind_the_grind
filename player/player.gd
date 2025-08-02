@@ -20,7 +20,16 @@ func _ready():
 	model_anim_player = player_model.get_node("AnimationPlayer")
 
 func die():
+	$BongSound.play()
+	await get_tree().physics_frame 
+	call_deferred("enable_ragdoll")
+	$Model/PlayerCollider/CollisionShape3D.disabled = true
 	pass
+
+func enable_ragdoll():
+	$Model/Skeleton3D/PhysicalBoneSimulator3D.physical_bones_start_simulation()
+	await get_tree().physics_frame 
+	$"Model/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone torso".apply_impulse(Vector3(1, 1, 0) * 10)
 
 func do_trick(_trick_type : ScoreManager.TrickType ) -> float:
 	if not can_do_trick():

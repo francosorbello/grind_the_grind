@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cvatelahibnjl"]
+[gd_scene load_steps=20 format=3 uid="uid://cvatelahibnjl"]
 
 [ext_resource type="PackedScene" uid="uid://c3itpu6mcpoxw" path="res://player/player_model.tscn" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://blqtmgtug40cy" path="res://player/player.gd" id="1_rkbax"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://cmwkotf5arx0d" path="res://player/trick_hit.mp3" id="11_2ieo8"]
 [ext_resource type="AudioStream" uid="uid://djnbnd5l05yym" path="res://player/wind.mp3" id="13_kb6p2"]
 [ext_resource type="Script" uid="uid://cxk465kyvfrs3" path="res://player/wind_sound.gd" id="14_wodsf"]
+[ext_resource type="AudioStream" uid="uid://dadssa5djxyem" path="res://player/bong.mp3" id="16_32hag"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g1dw6"]
 radius = 0.332925
@@ -88,3 +89,6 @@ script = ExtResource("14_wodsf")
 
 [node name="TrickHitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_2ieo8")
+
+[node name="BongSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_32hag")

@@ -5,6 +5,7 @@ extends Node3D
 
 func lose_game() -> void:
     player.die()
+    await get_tree().create_timer(3.0).timeout
     if lose_screen:
         IndieBlueprintSceneTransitioner.transition_to(
 		lose_screen,
