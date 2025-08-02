@@ -44,7 +44,7 @@ func do_trick(_trick_type : Global.TrickType ) -> float:
 	model_anim_player.play("fall")
 	model_anim_player.animation_finished.connect(func (_anim_name) : model_anim_player.play(prev_anim))  # Play air animation after falling
 	_rotate_while_tricking(model_anim_player.current_animation_length)
-	score_manager.increment_trick_multiplier()
+	score_manager.do_trick()
 	return model_anim_player.current_animation_length
 
 func _rotate_while_tricking(time : float):

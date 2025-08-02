@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcbjkfyxpxvg2"]
+
+[ext_resource type="Script" uid="uid://bno6mxoc6wp4k" path="res://ui/store/store_button.gd" id="1_bmlks"]
+[ext_resource type="Texture2D" uid="uid://ksfqij7owrqt" path="res://ui/store/icons/rails.png" id="2_mm7rm"]
+[ext_resource type="Texture2D" uid="uid://cwucxu3eccd8x" path="res://ui/store/icons/speed.png" id="3_vgr6n"]
+[ext_resource type="Texture2D" uid="uid://chdew6t5wytf3" path="res://ui/store/icons/skater.png" id="4_ncqft"]
+
+[node name="StoreButton" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 109.0
+offset_bottom = 113.0
+script = ExtResource("1_bmlks")
+icons = Dictionary[int, Texture2D]({
+0: ExtResource("2_mm7rm"),
+1: ExtResource("3_vgr6n"),
+2: ExtResource("4_ncqft")
+})
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Stat Name"
+icon = ExtResource("3_vgr6n")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

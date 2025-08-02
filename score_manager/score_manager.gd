@@ -5,8 +5,13 @@ class_name ScoreManager
 
 @export var grind_points : PointValue
 @export var trick_multiplier : PointValue
+@export var trick_points : PointValue # trick points should increment when doing tricks, based on value of trick_stat. on final_score, this value is multiplied by trick_multiplier
 @export_group("Stats")
 @export var stats : Dictionary[Global.StatType, StatValue]
+
+@export_group("UI")
+@export var game_ui : Control
+
 
 func _ready():
     $GrindingTimer.timeout.connect(on_grinding_timeout)
@@ -16,30 +21,61 @@ func _ready():
 # increment a stat via ui
 func increment_stat(stat_type: Global.StatType, amount: int) -> void:
     stats[stat_type].increment_by(amount)
+    print("incrementing stat %s by %d" % [stat_type, amount])
+
+func decrement_stat(stat_type: Global.StatType, amount: int) -> void:
+    stats[stat_type].decrement_by(amount)
+    print("decrementing stat %s by %d" % [stat_type, amount])
+
+#region Increment Functions
+func upgrade_stat(stat_type: Global.StatType) -> void:
+    match stat_type:
+        Global.StatType.SPEED:
+            increment_speed()
+        Global.StatType.GRIND:
+            increment_grind()
+        Global.StatType.TRICK:
+            increment_trick()
+        _:
+            print("Unknown stat type: ", stat_type)
+
+func increment_grind():
+    $GrindManager.increment(self)
+
+func increment_trick():
+    $TrickManager.increment(self)
+
+func increment_speed():
+    $SpeedManager.increment(self)
+    $GrindingTimer.stop()
+    set_grinding(true) 
+#endregion
 
 # increment grind points while grinding
 func increment_grind_points() -> void:
     grind_points.value += stats[Global.StatType.GRIND].value
     calculate_current_score()
 
+func do_trick() -> void:
+    trick_points.value += stats[Global.StatType.TRICK].value
+    increment_trick_multiplier()  # Increment the trick multiplier when a trick is done
+    calculate_current_score()
+
 func increment_trick_multiplier():
     trick_multiplier.value += 1 
-    calculate_current_score()
 
 # calculate the current score based on grind points and trick multiplier
 func calculate_current_score() -> int:
     var total_score = grind_points.value + trick_multiplier.value * stats[Global.StatType.TRICK].value
     current_score.value = total_score
-    print("current score: ",current_score.value)
+    # print("current score: ",current_score.value)
+    game_ui.show_combo(grind_points.value, trick_points.value, trick_multiplier.value)
     return total_score
 
 func set_grinding(is_grinding: bool) -> void:
-    print("set grinding")
     if is_grinding:
-        print("starting grinding timer every %f seconds"%(stats[Global.StatType.SPEED].value / 1000.0))
         $GrindingTimer.start(stats[Global.StatType.SPEED].value / 1000.0)  # Convert milliseconds to seconds
     else:
-        print("stopping grinding timer")
         $GrindingTimer.stop()
     
 func on_grinding_timeout() -> void:
