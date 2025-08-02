@@ -134,7 +134,6 @@ theme_override_constants/shadow_offset_x = 3
 theme_override_fonts/normal_font = ExtResource("9_yjec7")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
-text = "asdfasdf"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1
