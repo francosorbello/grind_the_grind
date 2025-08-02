@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bocig7usld53w"]
+[gd_scene load_steps=13 format=3 uid="uid://bocig7usld53w"]
 
 [ext_resource type="PackedScene" uid="uid://duavsxyyq1h2j" path="res://obstacles/obstacle_generator.tscn" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://cvatelahibnjl" path="res://player/player.tscn" id="1_l1rk1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dfkq4o22ymhr1" path="res://game_screens/game/grind_path.gd" id="1_vasa2"]
 [ext_resource type="PackedScene" uid="uid://bcwfm3mw5710y" path="res://game_screens/end/end.tscn" id="2_cxkev"]
 [ext_resource type="Script" uid="uid://crx6mk28wv1s2" path="res://game_screens/game/path_visual.gd" id="4_ryayy"]
+[ext_resource type="PackedScene" uid="uid://bo77hwc35sjxe" path="res://score_manager/score_manager.tscn" id="7_slubn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vasa2"]
 sky_top_color = Color(0.996078, 0.921569, 0.964706, 1)
@@ -38,6 +39,10 @@ point_count = 4
 script = ExtResource("1_txhlf")
 lose_screen = ExtResource("2_cxkev")
 player = NodePath("GrindPath/PathFollow3D/Player")
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="ScoreManager" parent="Managers" instance=ExtResource("7_slubn")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -74,8 +79,9 @@ h_offset = 0.1
 v_offset = 0.1
 tilt_enabled = false
 
-[node name="Player" parent="GrindPath/PathFollow3D" instance=ExtResource("1_l1rk1")]
+[node name="Player" parent="GrindPath/PathFollow3D" node_paths=PackedStringArray("score_manager") instance=ExtResource("1_l1rk1")]
 transform = Transform3D(-0.985145, 0, -0.171723, 0, 1, 0, 0.171723, 0, -0.985145, 0.0585818, 0, 0.12579)
+score_manager = NodePath("../../../Managers/ScoreManager")
 
 [node name="PathVisual" type="CSGPolygon3D" parent="GrindPath" node_paths=PackedStringArray("path")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.844416, 0.134206)

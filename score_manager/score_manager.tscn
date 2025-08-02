@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://bo77hwc35sjxe"]
+[gd_scene load_steps=9 format=3 uid="uid://bo77hwc35sjxe"]
 
 [ext_resource type="Script" uid="uid://dll25ta7sbhbs" path="res://score_manager/score_manager.gd" id="1_5xpjt"]
+[ext_resource type="Resource" uid="uid://0f7ppn4ikm4k" path="res://score_manager/score_values/current_score.tres" id="3_g2d3w"]
+[ext_resource type="Resource" uid="uid://0bcgtott1ftl" path="res://score_manager/point_values/grind_points.tres" id="3_rxhy0"]
+[ext_resource type="Resource" uid="uid://dxlo00b2ovwg2" path="res://score_manager/point_values/trick_multiplier_points.tres" id="4_i4f1m"]
+[ext_resource type="Script" uid="uid://qhxvigejvflm" path="res://stat_value.gd" id="4_rxhy0"]
+[ext_resource type="Resource" uid="uid://ctv06h38dk23e" path="res://score_manager/stat_values/GrindStat.tres" id="5_i4f1m"]
+[ext_resource type="Resource" uid="uid://cu5xew64i5jj6" path="res://score_manager/stat_values/SpeedStat.tres" id="6_68vhu"]
+[ext_resource type="Resource" uid="uid://drl3sjyfl0tpm" path="res://score_manager/stat_values/TrickStat.tres" id="6_ce6sl"]
 
 [node name="ScoreManager" type="Node"]
 script = ExtResource("1_5xpjt")
+current_score = ExtResource("3_g2d3w")
+grind_points = ExtResource("3_rxhy0")
+trick_multiplier = ExtResource("4_i4f1m")
+stats = Dictionary[int, ExtResource("4_rxhy0")]({
+0: ExtResource("5_i4f1m"),
+1: ExtResource("6_68vhu"),
+2: ExtResource("6_ce6sl")
+})
+
+[node name="GrindingTimer" type="Timer" parent="."]

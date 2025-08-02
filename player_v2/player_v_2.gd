@@ -1,4 +1,5 @@
 extends Node3D
+## @deprecated
 
 @export var movement_speed: float = 5.0
 @export var path : Path3D

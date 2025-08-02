@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://cvatelahibnjl"]
+[gd_scene load_steps=21 format=3 uid="uid://cvatelahibnjl"]
 
 [ext_resource type="PackedScene" uid="uid://c3itpu6mcpoxw" path="res://player/player_model.tscn" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://blqtmgtug40cy" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="PackedScene" uid="uid://cblcve3y4oao1" path="res://Models/GLB format/skateboard.glb" id="2_g1dw6"]
 [ext_resource type="AudioStream" uid="uid://dtgr2yy7lnnfd" path="res://player/jump.mp3" id="5_qjkh3"]
+[ext_resource type="Script" uid="uid://cvr8632dfllvl" path="res://player/states/init_state.gd" id="5_tqiix"]
 [ext_resource type="AudioStream" uid="uid://dkj7ggt0ewxa4" path="res://player/nicer_grind.ogg" id="6_2ieo8"]
 [ext_resource type="Script" uid="uid://dybilg3xaqjtm" path="res://addons/ftr_tools/sm/state_machine.gd" id="6_g6k8r"]
 [ext_resource type="Script" uid="uid://c4hyjlkn4wjai" path="res://player/states/grind_state.gd" id="7_boad6"]
@@ -49,6 +50,9 @@ shape = SubResource("CapsuleShape3D_g1dw6")
 script = ExtResource("6_g6k8r")
 initial_state = NodePath("GrindState")
 metadata/_custom_type_script = "uid://dybilg3xaqjtm"
+
+[node name="InitState" type="Node" parent="StateMachine"]
+script = ExtResource("5_tqiix")
 
 [node name="GrindState" type="Node" parent="StateMachine"]
 script = ExtResource("7_boad6")

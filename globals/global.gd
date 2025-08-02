@@ -3,11 +3,17 @@ class_name Global
 
 enum StatType {
     GRIND,
+    SPEED, # speed is in milliseconds
     TRICK,
-    SPEED,
 }
 
 enum ScoreType {
     CURRENT,
     FINAL,
+}
+
+enum TrickType {
+    TRICK_Z,
+    TRICK_x,
+    TRICK_C    
 }

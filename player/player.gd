@@ -3,17 +3,19 @@ extends Node3D
 @export var jump_height: float = 1.0
 @export var jump_speed: float = 5.0
 @export var fall_speed: float = 5.0
+@export var score_manager : ScoreManager
 
 @onready var player_model : Node3D = $Model
+
 
 var model_anim_player : AnimationPlayer
 var last_trick_time : float = 0.0
 var trick_timeout : float = 0.2
 
-var trick_moves : Dictionary[int, ScoreManager.TrickType] = {
-	KEY_Z: ScoreManager.TrickType.TRICK_Z,
-	KEY_X: ScoreManager.TrickType.TRICK_x,
-	KEY_C: ScoreManager.TrickType.TRICK_C
+var trick_moves : Dictionary[int, Global.TrickType] = {
+	KEY_Z: Global.TrickType.TRICK_Z,
+	KEY_X: Global.TrickType.TRICK_x,
+	KEY_C: Global.TrickType.TRICK_C
 }
 
 func _ready():
@@ -31,7 +33,7 @@ func enable_ragdoll():
 	await get_tree().physics_frame 
 	$"Model/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone torso".apply_impulse(Vector3(1, 1, 0) * 10)
 
-func do_trick(_trick_type : ScoreManager.TrickType ) -> float:
+func do_trick(_trick_type : Global.TrickType ) -> float:
 	if not can_do_trick():
 		return -1.0
 	# print("doing trick ",trick_type)

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PointValue" load_steps=2 format=3 uid="uid://0bcgtott1ftl"]
+
+[ext_resource type="Script" uid="uid://bj6q8ruywkkrh" path="res://score_manager/point_value.gd" id="1_m6skr"]
+
+[resource]
+script = ExtResource("1_m6skr")
+value = 0
+metadata/_custom_type_script = "uid://bj6q8ruywkkrh"
