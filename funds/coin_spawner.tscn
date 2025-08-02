@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu13ab2ed83x3"]
+
+[ext_resource type="Script" uid="uid://yainruxl3ah2" path="res://funds/coin_spawner.gd" id="1_7pd55"]
+[ext_resource type="PackedScene" uid="uid://c8f6u2kyfcxvu" path="res://funds/coin_gold_2.tscn" id="2_0choh"]
+[ext_resource type="AudioStream" uid="uid://derxkn13c45g" path="res://funds/coin_pickup.mp3" id="3_ujgav"]
+
+[node name="CoinSpawner" type="Node3D"]
+script = ExtResource("1_7pd55")
+coin_scene = ExtResource("2_0choh")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="CoinPickupSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ujgav")

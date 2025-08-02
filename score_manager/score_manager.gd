@@ -6,8 +6,11 @@ class_name ScoreManager
 @export var grind_points : PointValue
 @export var trick_multiplier : PointValue
 @export var trick_points : PointValue # trick points should increment when doing tricks, based on value of trick_stat. on final_score, this value is multiplied by trick_multiplier
+
 @export_group("Stats")
 @export var stats : Dictionary[Global.StatType, StatValue]
+@export var current_funds : FundRes
+@export var prices_container : UpgradePriceContainer
 
 @export_group("UI")
 @export var game_ui : Control
@@ -21,11 +24,16 @@ func _ready():
 # increment a stat via ui
 func increment_stat(stat_type: Global.StatType, amount: int) -> void:
     stats[stat_type].increment_by(amount)
-    print("incrementing stat %s by %d" % [stat_type, amount])
+    # print("incrementing stat %s by %d" % [stat_type, amount])
+    purchase_stat(stat_type)  # Deduct funds when a stat is incremented
 
 func decrement_stat(stat_type: Global.StatType, amount: int) -> void:
     stats[stat_type].decrement_by(amount)
-    print("decrementing stat %s by %d" % [stat_type, amount])
+    # print("decrementing stat %s by %d" % [stat_type, amount])
+    purchase_stat(stat_type)  # Deduct funds when a stat is decremented
+
+func purchase_stat(stat_type : Global.StatType):
+    current_funds.subtract_funds(prices_container.prices.get(stat_type,0))
 
 #region Increment Functions
 func upgrade_stat(stat_type: Global.StatType) -> void:

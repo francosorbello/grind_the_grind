@@ -4,7 +4,7 @@ extends Control
 
 @export_group("Funds")
 @export var prices_container : UpgradePriceContainer
-@export var funds : PointValue
+@export var funds : FundRes 
 
 @export_group("Resources")
 @export var icons : Dictionary[Global.StatType, Texture2D]

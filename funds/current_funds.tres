@@ -1,8 +1,7 @@
-[gd_resource type="Resource" script_class="PointValue" load_steps=2 format=3 uid="uid://dkdo2hetos4e6"]
+[gd_resource type="Resource" script_class="FundRes" load_steps=2 format=3 uid="uid://bfc16jmccsrdj"]
 
-[ext_resource type="Script" uid="uid://bj6q8ruywkkrh" path="res://score_manager/point_value.gd" id="1_vb7f6"]
+[ext_resource type="Script" uid="uid://bee4i761ouccl" path="res://funds/fund_res.gd" id="1_dmg80"]
 
 [resource]
-script = ExtResource("1_vb7f6")
-value = 0
-metadata/_custom_type_script = "uid://bj6q8ruywkkrh"
+script = ExtResource("1_dmg80")
+metadata/_custom_type_script = "uid://bee4i761ouccl"

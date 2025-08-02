@@ -2,6 +2,10 @@ extends Node3D
 
 @export var lose_screen : PackedScene
 @export var player : Node3D
+@export var current_funds : FundRes
+
+func _start():
+    current_funds.reset()
 
 func lose_game() -> void:
     player.die()

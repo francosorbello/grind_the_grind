@@ -1,16 +1,25 @@
-[gd_scene load_steps=17 format=3 uid="uid://bocig7usld53w"]
+[gd_scene load_steps=23 format=3 uid="uid://bocig7usld53w"]
 
 [ext_resource type="PackedScene" uid="uid://duavsxyyq1h2j" path="res://obstacles/obstacle_generator.tscn" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://cvatelahibnjl" path="res://player/player.tscn" id="1_l1rk1"]
 [ext_resource type="Script" uid="uid://bp2gijcc1enr5" path="res://game_screens/game/game.gd" id="1_txhlf"]
 [ext_resource type="Script" uid="uid://dfkq4o22ymhr1" path="res://game_screens/game/grind_path.gd" id="1_vasa2"]
 [ext_resource type="PackedScene" uid="uid://bcwfm3mw5710y" path="res://game_screens/end/end.tscn" id="2_cxkev"]
+[ext_resource type="Script" uid="uid://bj6q8ruywkkrh" path="res://score_manager/point_value.gd" id="3_0ydko"]
+[ext_resource type="PackedScene" uid="uid://cu13ab2ed83x3" path="res://funds/coin_spawner.tscn" id="3_4xgoh"]
+[ext_resource type="Resource" uid="uid://bfc16jmccsrdj" path="res://funds/current_funds.tres" id="4_0ydko"]
 [ext_resource type="Script" uid="uid://crx6mk28wv1s2" path="res://game_screens/game/path_visual.gd" id="4_ryayy"]
 [ext_resource type="Resource" uid="uid://cgo4b4r5v3vk7" path="res://score_manager/point_values/trick_points.tres" id="4_slubn"]
 [ext_resource type="PackedScene" uid="uid://bo77hwc35sjxe" path="res://score_manager/score_manager.tscn" id="7_slubn"]
+[ext_resource type="Resource" uid="uid://by3lyx2rfri5m" path="res://funds/upgrade_prices.tres" id="8_2brpg"]
 [ext_resource type="PackedScene" uid="uid://4d6flvbws1q4" path="res://ui/store/store_ui.tscn" id="9_8usfm"]
 [ext_resource type="Script" uid="uid://2mnbi61m6kla" path="res://ui/game_ui.gd" id="9_kw303"]
 [ext_resource type="FontFile" uid="uid://ca45dnpmcfk5l" path="res://ui/Fonts/Teko-Medium.ttf" id="9_yjec7"]
+
+[sub_resource type="Resource" id="Resource_t08ro"]
+script = ExtResource("3_0ydko")
+value = 0
+metadata/_custom_type_script = "uid://bj6q8ruywkkrh"
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vasa2"]
 sky_top_color = Color(0.996078, 0.921569, 0.964706, 1)
@@ -39,15 +48,25 @@ _data = {
 }
 point_count = 4
 
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2brpg"]
+
 [node name="Game" type="Node3D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_txhlf")
 lose_screen = ExtResource("2_cxkev")
 player = NodePath("GrindPath/PathFollow3D/Player")
+current_funds = SubResource("Resource_t08ro")
+
+[node name="CoinSpawner" parent="." node_paths=PackedStringArray("path") instance=ExtResource("3_4xgoh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+path = NodePath("../GrindPath")
+current_funds = ExtResource("4_0ydko")
 
 [node name="Managers" type="Node" parent="."]
 
 [node name="ScoreManager" parent="Managers" node_paths=PackedStringArray("game_ui") instance=ExtResource("7_slubn")]
 trick_points = ExtResource("4_slubn")
+current_funds = ExtResource("4_0ydko")
+prices_container = ExtResource("8_2brpg")
 game_ui = NodePath("../../GameUI")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -115,6 +134,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_kw303")
+current_funds = ExtResource("4_0ydko")
 metadata/_edit_use_anchors_ = true
 
 [node name="ComboLabel" type="RichTextLabel" parent="GameUI"]
@@ -139,5 +159,23 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="FundsLabel" type="Label" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_top = 40.0
+offset_right = -1.0
+offset_bottom = 112.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("9_yjec7")
+theme_override_font_sizes/font_size = 50
+text = "$0"
+horizontal_alignment = 2
+
 [node name="StoreUI" parent="." node_paths=PackedStringArray("score_manager") instance=ExtResource("9_8usfm")]
 score_manager = NodePath("../Managers/ScoreManager")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_2brpg")
