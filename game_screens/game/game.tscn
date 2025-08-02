@@ -72,6 +72,7 @@ obstacles_enabled = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.833929, 0)
 curve = SubResource("Curve3D_l1rk1")
 script = ExtResource("1_vasa2")
+speed = 4.0
 
 [node name="PathFollow3D" type="PathFollow3D" parent="GrindPath"]
 transform = Transform3D(0.633819, 0, -0.773475, 0, 1, 0, 0.773475, 0, 0.633819, -2.37265, 0.100055, -2.73988)

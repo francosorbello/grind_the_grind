@@ -22,6 +22,10 @@ func increment_grind_points() -> void:
     grind_points.value += stats[Global.StatType.GRIND].value
     calculate_current_score()
 
+func increment_trick_multiplier():
+    trick_multiplier.value += 1 
+    calculate_current_score()
+
 # calculate the current score based on grind points and trick multiplier
 func calculate_current_score() -> int:
     var total_score = grind_points.value + trick_multiplier.value * stats[Global.StatType.TRICK].value

@@ -17,6 +17,7 @@ var trick_moves : Dictionary[int, Global.TrickType] = {
 	KEY_X: Global.TrickType.TRICK_x,
 	KEY_C: Global.TrickType.TRICK_C
 }
+var rng = RandomNumberGenerator.new()
 
 func _ready():
 	model_anim_player = player_model.get_node("AnimationPlayer")
@@ -42,7 +43,27 @@ func do_trick(_trick_type : Global.TrickType ) -> float:
 	$TrickHitSound.play()
 	model_anim_player.play("fall")
 	model_anim_player.animation_finished.connect(func (_anim_name) : model_anim_player.play(prev_anim))  # Play air animation after falling
+	_rotate_while_tricking(model_anim_player.current_animation_length)
+	score_manager.increment_trick_multiplier()
 	return model_anim_player.current_animation_length
+
+func _rotate_while_tricking(time : float):
+	var tween := create_tween()
+	var current_trick = rng.randi_range(0, 2)  
+	var trick_rotation = Vector3(0, 0, 0)
+	
+	match current_trick:
+		0:
+			trick_rotation = Vector3(0, 360, 0)  
+		1:
+			trick_rotation = Vector3(360, 0, 0)  
+		2:
+			trick_rotation = Vector3(0, 0, 360)  
+
+	tween.tween_property(player_model, "rotation_degrees", trick_rotation, time)
+	tween.tween_callback(func():
+		player_model.rotation_degrees = Vector3(0, 0, 0)  # Reset rotation after trick
+	)
 
 func do_grab_anim():
 	model_anim_player.play("skate-grab")
@@ -53,7 +74,4 @@ func do_grind_anim():
 func can_do_trick() -> bool:
 	var current_time = Time.get_ticks_msec() / 1000.0
 	var result : bool = (current_time - last_trick_time) > trick_timeout
-	if result:
-		print(current_time - last_trick_time)
-	
 	return result
