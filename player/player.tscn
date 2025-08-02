@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c3itpu6mcpoxw" path="res://player/player_model.tscn" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://blqtmgtug40cy" path="res://player/player.gd" id="1_rkbax"]
-[ext_resource type="PackedScene" uid="uid://cblcve3y4oao1" path="res://Models/GLB format/skateboard.glb" id="2_g1dw6"]
+[ext_resource type="PackedScene" uid="uid://cblcve3y4oao1" path="res://models/GLB format/skateboard.glb" id="2_g1dw6"]
 [ext_resource type="AudioStream" uid="uid://dtgr2yy7lnnfd" path="res://player/jump.mp3" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://cvr8632dfllvl" path="res://player/states/init_state.gd" id="5_tqiix"]
 [ext_resource type="AudioStream" uid="uid://dkj7ggt0ewxa4" path="res://player/nicer_grind.ogg" id="6_2ieo8"]

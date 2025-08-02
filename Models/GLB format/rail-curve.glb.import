@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b03d7fuy7l2oy"
-path="res://.godot/imported/rail-curve.glb-8cd40c73b146b55e503919fcba47ad59.scn"
+path="res://.godot/imported/rail-curve.glb-2acfb0031d31489ea802590c9ca7062c.scn"
 
 [deps]
 
-source_file="res://Models/GLB format/rail-curve.glb"
-dest_files=["res://.godot/imported/rail-curve.glb-8cd40c73b146b55e503919fcba47ad59.scn"]
+source_file="res://models/GLB format/rail-curve.glb"
+dest_files=["res://.godot/imported/rail-curve.glb-2acfb0031d31489ea802590c9ca7062c.scn"]
 
 [params]
 

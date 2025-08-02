@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c8sxrkyyibxg4"
-path="res://.godot/imported/bowl-side.glb-db73e29521ab5c9319624f2d60748fd5.scn"
+path="res://.godot/imported/bowl-side.glb-f96911d94107872b32bbbe9018e8900e.scn"
 
 [deps]
 
-source_file="res://Models/GLB format/bowl-side.glb"
-dest_files=["res://.godot/imported/bowl-side.glb-db73e29521ab5c9319624f2d60748fd5.scn"]
+source_file="res://models/GLB format/bowl-side.glb"
+dest_files=["res://.godot/imported/bowl-side.glb-f96911d94107872b32bbbe9018e8900e.scn"]
 
 [params]
 

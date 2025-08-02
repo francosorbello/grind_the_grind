@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bbsb3ir5uvg8l"
-path="res://.godot/imported/rail-high.glb-9561a504c67da17c6097f784fa3b9dc6.scn"
+path="res://.godot/imported/rail-high.glb-9b1eab66836f8bff13f0c981a7fa32fc.scn"
 
 [deps]
 
-source_file="res://Models/GLB format/rail-high.glb"
-dest_files=["res://.godot/imported/rail-high.glb-9561a504c67da17c6097f784fa3b9dc6.scn"]
+source_file="res://models/GLB format/rail-high.glb"
+dest_files=["res://.godot/imported/rail-high.glb-9b1eab66836f8bff13f0c981a7fa32fc.scn"]
 
 [params]
 

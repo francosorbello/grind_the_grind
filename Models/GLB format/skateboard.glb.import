@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cblcve3y4oao1"
-path="res://.godot/imported/skateboard.glb-7cb5c18e8332251bb0c01481534fcae4.scn"
+path="res://.godot/imported/skateboard.glb-07510cc4065faf06ad059c9d680f26c9.scn"
 
 [deps]
 
-source_file="res://Models/GLB format/skateboard.glb"
-dest_files=["res://.godot/imported/skateboard.glb-7cb5c18e8332251bb0c01481534fcae4.scn"]
+source_file="res://models/GLB format/skateboard.glb"
+dest_files=["res://.godot/imported/skateboard.glb-07510cc4065faf06ad059c9d680f26c9.scn"]
 
 [params]
 

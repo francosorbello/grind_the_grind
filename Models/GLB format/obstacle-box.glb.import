@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://rpmgfmslh26h"
-path="res://.godot/imported/obstacle-box.glb-0a6f2c4296f47973eae6edbeaf4605cd.scn"
+path="res://.godot/imported/obstacle-box.glb-2f49ca4238ae6fe5e0862312a05ca77c.scn"
 
 [deps]
 
-source_file="res://Models/GLB format/obstacle-box.glb"
-dest_files=["res://.godot/imported/obstacle-box.glb-0a6f2c4296f47973eae6edbeaf4605cd.scn"]
+source_file="res://models/GLB format/obstacle-box.glb"
+dest_files=["res://.godot/imported/obstacle-box.glb-2f49ca4238ae6fe5e0862312a05ca77c.scn"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c3itpu6mcpoxw"]
 
-[ext_resource type="PackedScene" uid="uid://cgb52i2a2634r" path="res://Models/GLB format/character-skate-boy.glb" id="1_70xuj"]
+[ext_resource type="PackedScene" uid="uid://cgb52i2a2634r" path="res://models/GLB format/character-skate-boy.glb" id="1_70xuj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_70xuj"]
 radius = 0.0

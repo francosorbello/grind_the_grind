@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ch2qiu1l4io6q"
-path="res://.godot/imported/character-skate-girl.glb-bc8ec7613fd5a15e562b41f59ace1cde.scn"
+path="res://.godot/imported/character-skate-girl.glb-75a4e26b86d700a6b39040500cd31508.scn"
 
 [deps]
 
-source_file="res://Models/GLB format/character-skate-girl.glb"
-dest_files=["res://.godot/imported/character-skate-girl.glb-bc8ec7613fd5a15e562b41f59ace1cde.scn"]
+source_file="res://models/GLB format/character-skate-girl.glb"
+dest_files=["res://.godot/imported/character-skate-girl.glb-75a4e26b86d700a6b39040500cd31508.scn"]
 
 [params]
 

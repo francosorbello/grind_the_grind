@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://4gv68ri7xhri"
-path="res://.godot/imported/bowl-corner-outer.glb-fec08dd723323934578c9b2efbc80c65.scn"
+path="res://.godot/imported/bowl-corner-outer.glb-d87e64650bb551945616ab65489daf17.scn"
 
 [deps]
 
-source_file="res://Models/GLB format/bowl-corner-outer.glb"
-dest_files=["res://.godot/imported/bowl-corner-outer.glb-fec08dd723323934578c9b2efbc80c65.scn"]
+source_file="res://models/GLB format/bowl-corner-outer.glb"
+dest_files=["res://.godot/imported/bowl-corner-outer.glb-d87e64650bb551945616ab65489daf17.scn"]
 
 [params]
 

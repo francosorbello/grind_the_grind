@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cihp6lo8kqjw3"
-path="res://.godot/imported/obstacle-end.glb-1317df351af0a0e98ea41171342a11ee.scn"
+path="res://.godot/imported/obstacle-end.glb-43edccdb4ae5b5b1345022b965a27b0c.scn"
 
 [deps]
 
-source_file="res://Models/GLB format/obstacle-end.glb"
-dest_files=["res://.godot/imported/obstacle-end.glb-1317df351af0a0e98ea41171342a11ee.scn"]
+source_file="res://models/GLB format/obstacle-end.glb"
+dest_files=["res://.godot/imported/obstacle-end.glb-43edccdb4ae5b5b1345022b965a27b0c.scn"]
 
 [params]
 

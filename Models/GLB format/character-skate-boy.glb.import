@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cgb52i2a2634r"
-path="res://.godot/imported/character-skate-boy.glb-7f571579f69deb93200f823759963f94.scn"
+path="res://.godot/imported/character-skate-boy.glb-1229cb0b35449d5f568cb73e98705f37.scn"
 
 [deps]
 
-source_file="res://Models/GLB format/character-skate-boy.glb"
-dest_files=["res://.godot/imported/character-skate-boy.glb-7f571579f69deb93200f823759963f94.scn"]
+source_file="res://models/GLB format/character-skate-boy.glb"
+dest_files=["res://.godot/imported/character-skate-boy.glb-1229cb0b35449d5f568cb73e98705f37.scn"]
 
 [params]
 
