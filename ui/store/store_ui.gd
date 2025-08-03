@@ -22,15 +22,17 @@ func _on_store_button_pressed(stat_type: Global.StatType) -> void:
 func _on_close_button_pressed() -> void:
 	close()
 	$OpenButton.visible = true
+	$ClickSound.play()
 	pass # Replace with function body.
 
 
 func _on_open_button_pressed() -> void:
 	$OpenButton.visible = false
 	open()
-	pass # Replace with function body.
+	$ClickSound.play()
 
 
 func _on_upgrade_stat(stat_type: Global.StatType) -> void:
 	score_manager.upgrade_stat(stat_type)
+	$ClickSound.play()
 	pass

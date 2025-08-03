@@ -1,6 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcwfm3mw5710y"]
+[gd_scene load_steps=14 format=3 uid="uid://bcwfm3mw5710y"]
 
 [ext_resource type="Script" uid="uid://b6cwysyd16c11" path="res://game_screens/end/end_controller.gd" id="1_6hflv"]
+[ext_resource type="FontFile" uid="uid://ca45dnpmcfk5l" path="res://ui/Fonts/Teko-Medium.ttf" id="1_wd8fe"]
+[ext_resource type="Resource" uid="uid://0f7ppn4ikm4k" path="res://score_manager/score_values/current_score.tres" id="3_8s13h"]
+[ext_resource type="AudioStream" uid="uid://csafkl2yg48y7" path="res://ui/click_001.ogg" id="3_l4m8a"]
+[ext_resource type="PackedScene" uid="uid://cblcve3y4oao1" path="res://models/GLB format/skateboard.glb" id="3_rl7ms"]
+[ext_resource type="PackedScene" uid="uid://c8eyjs15r7prg" path="res://models/GLB format/pallet.glb" id="4_rh557"]
+[ext_resource type="PackedScene" uid="uid://cgb52i2a2634r" path="res://models/GLB format/character-skate-boy.glb" id="5_kb6us"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kb6us"]
+sky_top_color = Color(0.996078, 0.921569, 0.964706, 1)
+sky_horizon_color = Color(1.22686, 1.20048, 1.20226, 1)
+ground_horizon_color = Color(1.22686, 1.20048, 1.20226, 1)
+
+[sub_resource type="Sky" id="Sky_8s13h"]
+sky_material = SubResource("ProceduralSkyMaterial_kb6us")
+
+[sub_resource type="Environment" id="Environment_l4m8a"]
+background_mode = 2
+sky = SubResource("Sky_8s13h")
+tonemap_mode = 2
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rl7ms"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8s13h"]
+bg_color = Color(1, 0.397701, 0.329255, 1)
+skew = Vector2(0, 0.065)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4m8a"]
+bg_color = Color(0.905882, 0, 0, 1)
+skew = Vector2(0, 0.065)
 
 [node name="End" type="Control"]
 layout_mode = 3
@@ -10,39 +40,138 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -31.0
-offset_top = -24.5
-offset_right = 31.0
-offset_bottom = 24.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "You lost
-"
+color = Color(0.407843, 0.498039, 0.898039, 1)
 
-[node name="EndController" type="Node" parent="."]
+[node name="EndController" type="Node" parent="." node_paths=PackedStringArray("score_label")]
 script = ExtResource("1_6hflv")
 game_s = "res://game_screens/game/game.tscn"
+score = ExtResource("3_8s13h")
+score_label = NodePath("../VBoxContainer/ScoreLabel")
 
-[node name="ResetButton" type="Button" parent="."]
+[node name="ClickSound" type="AudioStreamPlayer" parent="EndController"]
+stream = ExtResource("3_l4m8a")
+volume_db = -10.0
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(1024, 512)
+size_2d_override_stretch = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport"]
+environment = SubResource("Environment_l4m8a")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_energy = 0.3
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.964502, 0.264075, 0, -0.264075, 0.964502, 0, 0.948488, 1.29995)
+
+[node name="skateboard2" parent="SubViewport" instance=ExtResource("3_rl7ms")]
+transform = Transform3D(0.419651, -0.46882, -0.777239, 0.0311901, 0.863229, -0.503848, 0.90715, 0.187198, 0.376877, 0.617852, 0.140449, -0.0204902)
+
+[node name="pallet2" parent="SubViewport" instance=ExtResource("4_rh557")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.841178, -0.0588875, -0.103507)
+
+[node name="pallet3" parent="SubViewport" instance=ExtResource("4_rh557")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.841178, 0.0889455, -0.103507)
+
+[node name="pallet4" parent="SubViewport" instance=ExtResource("4_rh557")]
+transform = Transform3D(0.962777, 0.218565, -0.159026, -0.192621, 0.967538, 0.163609, 0.189623, -0.126887, 0.973624, 0.841178, 0.233549, -0.103507)
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00495148, -0.0454223, 0)
+size = Vector3(2.33203, 0.0136719, 1)
+
+[node name="character-skate-boy2" parent="SubViewport" instance=ExtResource("5_kb6us")]
+transform = Transform3D(-4.37114e-08, -8.74228e-08, 1, 0, -1, -8.74228e-08, 1, -3.82137e-15, 4.37114e-08, -0.199545, 0.129078, -0.107723)
+
+[node name="Skeleton3D" parent="SubViewport/character-skate-boy2" index="0"]
+bones/1/position = Vector3(0, 0.1, 0)
+bones/1/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
+bones/5/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
+bones/6/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
+
+[node name="leg-left" parent="SubViewport/character-skate-boy2/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0.083571, 0.07125, -0.17625)
+
+[node name="leg-right" parent="SubViewport/character-skate-boy2/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.083571, 0.07125, -0.17625)
+
+[node name="torso" parent="SubViewport/character-skate-boy2/Skeleton3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -1.44382e-15, 0.07125, -0.17625)
+
+[node name="arm-left" parent="SubViewport/character-skate-boy2/Skeleton3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, -1, 0.0998968, 0.08275, -0.28775)
+
+[node name="arm-right" parent="SubViewport/character-skate-boy2/Skeleton3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, -1, -0.0998968, 0.08275, -0.28775)
+
+[node name="head" parent="SubViewport/character-skate-boy2/Skeleton3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 1.81969e-09, 0.0976388, -0.34325)
+
+[node name="hat" parent="SubViewport/character-skate-boy2/Skeleton3D" index="6"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 1.66843e-09, 0.143758, -0.537526)
+
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -27.0
-offset_top = 17.0
-offset_right = 27.0
-offset_bottom = 48.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_rl7ms")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 182.0
+offset_right = 400.0
+offset_bottom = 363.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_wd8fe")
+theme_override_font_sizes/font_size = 80
+text = "YOU BAILED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_wd8fe")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResetButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_wd8fe")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxFlat_8s13h")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l4m8a")
 text = "RESET"
 
-[connection signal="pressed" from="ResetButton" to="EndController" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ResetButton" to="EndController" method="_on_reset_button_pressed"]
+
+[editable path="SubViewport/character-skate-boy2"]

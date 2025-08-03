@@ -9,3 +9,6 @@ func increment_by(amount: int) -> void:
 
 func reset() -> void:
     value = 0
+
+func as_big() -> Big:
+    return Big.new(value)

@@ -40,7 +40,6 @@ func enable_ragdoll():
 func do_trick(_trick_type : Global.TrickType ) -> float:
 	if not can_do_trick():
 		return -1.0
-	# print("doing trick ",trick_type)
 	last_trick_time = Time.get_ticks_msec() / 1000.0
 	var prev_anim = model_anim_player.current_animation
 

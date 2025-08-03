@@ -6,7 +6,6 @@ signal value_changed(value : int,reason : Global.FundReason)
 @export var value: int = 0
 
 func add_funds(amount: int, reason : Global.FundReason = Global.FundReason.NONE) -> void:
-    print("Adding funds: ", amount)
     value += amount
     value_changed.emit(value,reason)
 

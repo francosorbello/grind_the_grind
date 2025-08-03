@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_dmg80")
+value = 0
 metadata/_custom_type_script = "uid://bee4i761ouccl"
