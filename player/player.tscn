@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cvatelahibnjl"]
+[gd_scene load_steps=22 format=3 uid="uid://cvatelahibnjl"]
 
 [ext_resource type="PackedScene" uid="uid://c3itpu6mcpoxw" path="res://player/player_model.tscn" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://blqtmgtug40cy" path="res://player/player.gd" id="1_rkbax"]
@@ -15,8 +15,9 @@
 [ext_resource type="AudioStream" uid="uid://clpr7406lo1mm" path="res://player/nicer_kick.ogg" id="10_ebec5"]
 [ext_resource type="AudioStream" uid="uid://djnbnd5l05yym" path="res://player/wind.mp3" id="13_kb6p2"]
 [ext_resource type="Script" uid="uid://cxk465kyvfrs3" path="res://player/wind_sound.gd" id="14_wodsf"]
-[ext_resource type="AudioStream" uid="uid://dadssa5djxyem" path="res://player/bong.mp3" id="16_32hag"]
+[ext_resource type="Script" uid="uid://2fi3mjiv16ug" path="res://player/states/dead_state.gd" id="16_e7oew"]
 [ext_resource type="AudioStream" uid="uid://muqphxj064oc" path="res://player/Basic_Scratch.mp3" id="16_tqiix"]
+[ext_resource type="AudioStream" uid="uid://brnhsk3oe7hdc" path="res://player/bail.mp3" id="18_e7oew"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g1dw6"]
 radius = 0.332925
@@ -56,6 +57,7 @@ script = ExtResource("5_tqiix")
 
 [node name="GrindState" type="Node" parent="StateMachine"]
 script = ExtResource("7_boad6")
+rotation_speed = null
 
 [node name="GrindSound" type="AudioStreamPlayer" parent="StateMachine/GrindState"]
 stream = ExtResource("6_2ieo8")
@@ -91,9 +93,13 @@ stream = ExtResource("13_kb6p2")
 volume_db = -80.0
 script = ExtResource("14_wodsf")
 
+[node name="DeadState" type="Node" parent="StateMachine"]
+script = ExtResource("16_e7oew")
+
 [node name="TrickHitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_tqiix")
 volume_db = -7.308
 
 [node name="BongSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("16_32hag")
+stream = ExtResource("18_e7oew")
+mix_target = 2

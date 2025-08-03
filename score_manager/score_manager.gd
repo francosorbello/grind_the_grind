@@ -66,7 +66,7 @@ func increment_grind_points() -> void:
     grind_points.value += stats[Global.StatType.GRIND].value
     if grind_points.value >= _grind_fund_treshold:
         print("Grind points reached threshold: ", _grind_fund_treshold)
-        current_funds.add_funds(10 + grind_points.value * 0.01 as int) # Add 10% of grind points as funds
+        current_funds.add_funds(10 + grind_points.value * 0.01 as int, Global.FundReason.GRIND_100) # Add 10% of grind points as funds
         _grind_fund_treshold += 100
         print("--1--")
     calculate_current_score()
@@ -76,7 +76,7 @@ func do_trick() -> void:
     increment_trick_multiplier()  # Increment the trick multiplier when a trick is done
     calculate_current_score()
     if trick_multiplier.value >= _multiplier_fund_treshold:
-        current_funds.add_funds(5 + stats[Global.StatType.TRICK].value * 0.01 as int) # Add 1% of trick points as funds
+        current_funds.add_funds(5 + stats[Global.StatType.TRICK].value * 0.01 as int, Global.FundReason.TRICK_10) # Add 1% of trick points as funds
         _multiplier_fund_treshold += 10
         print("--2--")
 

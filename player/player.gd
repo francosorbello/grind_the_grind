@@ -27,12 +27,15 @@ func die():
 	await get_tree().physics_frame 
 	call_deferred("enable_ragdoll")
 	$Model/PlayerCollider/CollisionShape3D.disabled = true
-	pass
+	
 
 func enable_ragdoll():
 	$Model/Skeleton3D/PhysicalBoneSimulator3D.physical_bones_start_simulation()
 	await get_tree().physics_frame 
-	$"Model/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone torso".apply_impulse(Vector3(1, 1, 0) * 10)
+	$"Model/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone torso".apply_impulse(Vector3(1, 1, 0) * 5)
+	$StateMachine.transition_to("DeadState")
+	var shirnk_tween = create_tween()
+	shirnk_tween.tween_property($Model/skateboard2, "scale", Vector3(0, 0, 0), 0.5)
 
 func do_trick(_trick_type : Global.TrickType ) -> float:
 	if not can_do_trick():

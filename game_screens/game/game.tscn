@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bocig7usld53w"]
+[gd_scene load_steps=42 format=3 uid="uid://bocig7usld53w"]
 
 [ext_resource type="PackedScene" uid="uid://duavsxyyq1h2j" path="res://obstacles/obstacle_generator.tscn" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://cvatelahibnjl" path="res://player/player.tscn" id="1_l1rk1"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://4d6flvbws1q4" path="res://ui/store/store_ui.tscn" id="9_8usfm"]
 [ext_resource type="Script" uid="uid://2mnbi61m6kla" path="res://ui/game_ui.gd" id="9_kw303"]
 [ext_resource type="FontFile" uid="uid://ca45dnpmcfk5l" path="res://ui/Fonts/Teko-Medium.ttf" id="9_yjec7"]
+[ext_resource type="PackedScene" uid="uid://c1f6nlxrlajff" path="res://ui/info_message.tscn" id="15_fuw7p"]
 [ext_resource type="AudioStream" uid="uid://mi2fo0ecxf45" path="res://music/Musinova - Pool Party (House Funk Disco).mp3.mp3" id="16_lbdsk"]
 [ext_resource type="AudioStream" uid="uid://car3l1yv1pi2u" path="res://music/Ketsa - My Town.mp3" id="17_0g76f"]
 [ext_resource type="AudioStream" uid="uid://bhx4bvq3rke14" path="res://music/Musinova - Playful Glitch IDM Electronic.mp3.mp3" id="18_26nvy"]
@@ -160,6 +161,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("9_kw303")
 current_funds = ExtResource("4_0ydko")
+info_msg_scene = ExtResource("15_fuw7p")
 metadata/_edit_use_anchors_ = true
 
 [node name="ComboLabel" type="RichTextLabel" parent="GameUI"]

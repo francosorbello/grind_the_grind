@@ -39,5 +39,5 @@ func _spawn_coin():
 
 func _on_player_collision(_area: Node3D) -> void:
 	$CoinPickupSound.play()
-	current_funds.add_funds(funds_to_add)
+	current_funds.add_funds(funds_to_add, Global.FundReason.COIN_PICKUP)
 	pass
