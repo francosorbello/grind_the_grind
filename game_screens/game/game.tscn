@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bocig7usld53w"]
+[gd_scene load_steps=38 format=3 uid="uid://bocig7usld53w"]
 
 [ext_resource type="PackedScene" uid="uid://duavsxyyq1h2j" path="res://obstacles/obstacle_generator.tscn" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://cvatelahibnjl" path="res://player/player.tscn" id="1_l1rk1"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bj6q8ruywkkrh" path="res://score_manager/point_value.gd" id="3_0ydko"]
 [ext_resource type="PackedScene" uid="uid://cu13ab2ed83x3" path="res://funds/coin_spawner.tscn" id="3_4xgoh"]
 [ext_resource type="Resource" uid="uid://bfc16jmccsrdj" path="res://funds/current_funds.tres" id="4_0ydko"]
+[ext_resource type="PackedScene" uid="uid://8mgl1i6nimrx" path="res://models/GLB format/floor-wood.glb" id="4_26nvy"]
 [ext_resource type="Script" uid="uid://crx6mk28wv1s2" path="res://game_screens/game/path_visual.gd" id="4_ryayy"]
 [ext_resource type="Resource" uid="uid://cgo4b4r5v3vk7" path="res://score_manager/point_values/trick_points.tres" id="4_slubn"]
 [ext_resource type="PackedScene" uid="uid://bo77hwc35sjxe" path="res://score_manager/score_manager.tscn" id="7_slubn"]
@@ -15,6 +16,19 @@
 [ext_resource type="PackedScene" uid="uid://4d6flvbws1q4" path="res://ui/store/store_ui.tscn" id="9_8usfm"]
 [ext_resource type="Script" uid="uid://2mnbi61m6kla" path="res://ui/game_ui.gd" id="9_kw303"]
 [ext_resource type="FontFile" uid="uid://ca45dnpmcfk5l" path="res://ui/Fonts/Teko-Medium.ttf" id="9_yjec7"]
+[ext_resource type="AudioStream" uid="uid://mi2fo0ecxf45" path="res://music/Musinova - Pool Party (House Funk Disco).mp3.mp3" id="16_lbdsk"]
+[ext_resource type="AudioStream" uid="uid://car3l1yv1pi2u" path="res://music/Ketsa - My Town.mp3" id="17_0g76f"]
+[ext_resource type="AudioStream" uid="uid://bhx4bvq3rke14" path="res://music/Musinova - Playful Glitch IDM Electronic.mp3.mp3" id="18_26nvy"]
+[ext_resource type="AudioStream" uid="uid://cas8gff8iex2a" path="res://music/Musinova - Technology Electronic Ambient IDM.mp3.mp3" id="19_isy70"]
+[ext_resource type="PackedScene" uid="uid://dwxnsuwrxi8nr" path="res://models/GLB format/half-pipe.glb" id="21_8c02a"]
+[ext_resource type="PackedScene" uid="uid://bbsb3ir5uvg8l" path="res://models/GLB format/rail-high.glb" id="22_igy8q"]
+[ext_resource type="PackedScene" uid="uid://bferqw4rdjn7g" path="res://models/GLB format/rail-low.glb" id="23_8nrn3"]
+[ext_resource type="PackedScene" uid="uid://cblcve3y4oao1" path="res://models/GLB format/skateboard.glb" id="23_igy8q"]
+[ext_resource type="PackedScene" uid="uid://dt4lnwe0ktmvo" path="res://models/city_kit/tree-large.glb" id="24_e7cbi"]
+[ext_resource type="PackedScene" uid="uid://dgx6om1unxvg6" path="res://models/city_kit/tree-small.glb" id="24_fkswu"]
+[ext_resource type="PackedScene" uid="uid://dpff0wyvhoatr" path="res://models/city_kit/planter.glb" id="24_mng32"]
+[ext_resource type="PackedScene" uid="uid://bmgmsm3onir1d" path="res://models/city_kit/fence.glb" id="27_hg21n"]
+[ext_resource type="PackedScene" uid="uid://c8eyjs15r7prg" path="res://models/GLB format/pallet.glb" id="29_3bl5q"]
 
 [sub_resource type="Resource" id="Resource_t08ro"]
 script = ExtResource("3_0ydko")
@@ -35,10 +49,6 @@ background_color = Color(0.407843, 0.498039, 0.898039, 1)
 sky = SubResource("Sky_h7iqs")
 tonemap_mode = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mq7fr"]
-shading_mode = 0
-albedo_color = Color(0.921569, 0.839216, 0.984314, 1)
-
 [sub_resource type="Curve3D" id="Curve3D_l1rk1"]
 closed = true
 bake_interval = 0.01
@@ -49,12 +59,27 @@ _data = {
 point_count = 4
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2brpg"]
+shuffle = true
+stream_count = 4
+stream_0 = ExtResource("16_lbdsk")
+stream_1 = ExtResource("17_0g76f")
+stream_2 = ExtResource("18_26nvy")
+stream_3 = ExtResource("19_isy70")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26nvy"]
+albedo_color = Color(0.674815, 0.674815, 0.674815, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_igy8q"]
+albedo_color = Color(0.67451, 0.67451, 0.67451, 1)
 
 [node name="Game" type="Node3D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_txhlf")
 lose_screen = ExtResource("2_cxkev")
 player = NodePath("GrindPath/PathFollow3D/Player")
 current_funds = SubResource("Resource_t08ro")
+
+[node name="floor-wood2" parent="." instance=ExtResource("4_26nvy")]
+transform = Transform3D(20, 0, 0, 0, 2, 0, 0, 0, 20, 0, 0.153154, 0)
 
 [node name="CoinSpawner" parent="." node_paths=PackedStringArray("path") instance=ExtResource("3_4xgoh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -76,10 +101,6 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_4fuuu")
-
-[node name="Floor" type="CSGBox3D" parent="."]
-material_override = SubResource("StandardMaterial3D_mq7fr")
-size = Vector3(10, 0.1, 10)
 
 [node name="Camera3D" type="Camera3D" parent="." groups=["camera"]]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 75.59, 75)
@@ -113,7 +134,7 @@ score_manager = NodePath("../../../Managers/ScoreManager")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.844416, 0.134206)
 polygon = PackedVector2Array(0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0)
 mode = 2
-path_node = NodePath("")
+path_node = NodePath("..")
 path_interval_type = 0
 path_interval = 0.66
 path_simplify_angle = 0.0
@@ -177,5 +198,113 @@ horizontal_alignment = 2
 [node name="StoreUI" parent="." node_paths=PackedStringArray("score_manager") instance=ExtResource("9_8usfm")]
 score_manager = NodePath("../Managers/ScoreManager")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamPlaylist_2brpg")
+volume_db = -10.4
+autoplay = true
+
+[node name="PrettyThings" type="Node3D" parent="."]
+
+[node name="rail-high2" parent="PrettyThings" instance=ExtResource("22_igy8q")]
+transform = Transform3D(2.80492, 0, 1.06415, 0, 3, 0, -1.06415, 0, 2.80492, -4.71092, -0.355205, 2.21061)
+visible = false
+
+[node name="rail-high3" parent="PrettyThings" instance=ExtResource("22_igy8q")]
+transform = Transform3D(2.74384, 0, -1.21298, 0, 3, 0, 1.21298, 0, 2.74384, -4.65975, -0.355205, -1.7211)
+
+[node name="rail-high4" parent="PrettyThings" instance=ExtResource("22_igy8q")]
+transform = Transform3D(1.17051, 0, -2.76223, 0, 3, 0, 2.76223, 0, 1.17051, -2.00494, -0.355205, -4.51374)
+
+[node name="rail-high5" parent="PrettyThings" instance=ExtResource("22_igy8q")]
+transform = Transform3D(-1.13343, 0, -2.77765, 0, 3, 0, 2.77765, 0, -1.13343, 1.97846, -0.525625, -4.57822)
+
+[node name="rail-high6" parent="PrettyThings" instance=ExtResource("22_igy8q")]
+transform = Transform3D(-2.77539, 0, -1.13895, 0, 3, 0, 1.13895, 0, -2.77539, 4.64846, -0.525625, -1.83247)
+
+[node name="FloorBig" type="CSGCylinder3D" parent="PrettyThings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.728876, 0)
+material_override = SubResource("StandardMaterial3D_26nvy")
+radius = 5.065
+smooth_faces = false
+
+[node name="rail-low2" parent="PrettyThings" instance=ExtResource("23_8nrn3")]
+transform = Transform3D(0.604507, 0, -1.90646, 0, 2, 0, 1.90646, 0, 0.604507, -5.54201, 0.216594, 2.70879)
+
+[node name="skateboard2" parent="PrettyThings" instance=ExtResource("23_igy8q")]
+transform = Transform3D(-0.73831, 0.309725, -0.599141, -0.123295, -0.935334, -0.331585, -0.663096, -0.170941, 0.728754, -3.76029, 0.370204, 3.36315)
+
+[node name="skateboard3" parent="PrettyThings" instance=ExtResource("23_igy8q")]
+transform = Transform3D(-0.539647, -0.185431, 0.821216, -0.0729985, -0.961463, -0.265068, 0.838721, -0.202991, 0.505314, 5.56596, 0.642997, 3.90221)
+
+[node name="tree-large2" parent="PrettyThings" instance=ExtResource("24_e7cbi")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.778226, 0.502814, -0.011781)
+visible = false
+
+[node name="planter2" parent="PrettyThings" instance=ExtResource("24_mng32")]
+transform = Transform3D(2.86055, 0, 0.904015, 0, 3, 0, -0.904015, 0, 2.86055, -8.39198, 0.475798, 3.38188)
+visible = false
+
+[node name="FloorSmall1" type="CSGBox3D" parent="PrettyThings"]
+transform = Transform3D(0.955098, 0, 0.296292, 0, 1, 0, -0.296292, 0, 0.955098, -5.3932, -0.255935, 2.50526)
+material_override = SubResource("StandardMaterial3D_igy8q")
+size = Vector3(3.34277, 1, 1.77002)
+
+[node name="FloorSmall2" type="CSGBox3D" parent="PrettyThings"]
+transform = Transform3D(0.944342, 0, -0.328965, 0, 1, 0, 0.328965, 0, 0.944342, 5.48111, -0.255935, 2.18932)
+material_override = SubResource("StandardMaterial3D_igy8q")
+size = Vector3(3.65869, 1, 2.81458)
+
+[node name="fence2" parent="PrettyThings" instance=ExtResource("27_hg21n")]
+transform = Transform3D(2.8771, 0, 0.849887, 0, 3, 0, -0.849887, 0, 2.8771, -5.39843, 0.374648, 1.44894)
+
+[node name="fence3" parent="PrettyThings" instance=ExtResource("27_hg21n")]
+transform = Transform3D(2.8771, 0, 0.849887, 0, 3, 0, -0.849887, 0, 2.8771, -6.85052, 0.374648, 1.92675)
+
+[node name="tree_cluster" type="Node3D" parent="PrettyThings"]
+
+[node name="tree-small3" parent="PrettyThings/tree_cluster" instance=ExtResource("24_fkswu")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -5.29694, 0.500804, 0.926565)
+
+[node name="tree-small4" parent="PrettyThings/tree_cluster" instance=ExtResource("24_fkswu")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -5.91419, 0.500804, 0.926565)
+
+[node name="tree-small5" parent="PrettyThings/tree_cluster" instance=ExtResource("24_fkswu")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -5.56172, 0.523732, 1.19788)
+
+[node name="tree-small6" parent="PrettyThings/tree_cluster" instance=ExtResource("24_fkswu")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.05748, 0.523732, 1.36604)
+
+[node name="tree-small7" parent="PrettyThings/tree_cluster" instance=ExtResource("24_fkswu")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.3037, 0.47807, 1.47128)
+
+[node name="tree_cluster2" type="Node3D" parent="PrettyThings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6384, -0.0778635, -0.663371)
+
+[node name="tree-small3" parent="PrettyThings/tree_cluster2" instance=ExtResource("24_fkswu")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -5.29694, 0.500804, 1.71051)
+
+[node name="tree-small4" parent="PrettyThings/tree_cluster2" instance=ExtResource("24_fkswu")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -5.91419, 0.500804, 0.926565)
+
+[node name="tree-small5" parent="PrettyThings/tree_cluster2" instance=ExtResource("24_fkswu")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -5.61615, 0.523732, 1.19788)
+
+[node name="tree-small6" parent="PrettyThings/tree_cluster2" instance=ExtResource("24_fkswu")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.05748, 0.523732, 1.31902)
+
+[node name="tree-small7" parent="PrettyThings/tree_cluster2" instance=ExtResource("24_fkswu")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -5.84565, 0.47807, 1.57597)
+
+[node name="pallet_cluster" type="Node3D" parent="PrettyThings"]
+
+[node name="pallet2" parent="PrettyThings/pallet_cluster" instance=ExtResource("29_3bl5q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6383, 0.222095, 3.45793)
+
+[node name="pallet3" parent="PrettyThings/pallet_cluster" instance=ExtResource("29_3bl5q")]
+transform = Transform3D(0.916719, 0.155975, 0.367829, 0, 0.920648, -0.390394, -0.399533, 0.357881, 0.843975, 4.07114, 0.238572, 3.45888)
+
+[node name="pallet4" parent="PrettyThings/pallet_cluster" instance=ExtResource("29_3bl5q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.89275, 0.248016, 2.95057)
+
+[node name="half-pipe2" parent="." instance=ExtResource("21_8c02a")]
+transform = Transform3D(-1.00141, 0, -0.93082, 0, 1, 0, 2.55045, 0, -0.365478, 6.5545, 0.432955, 2.74064)

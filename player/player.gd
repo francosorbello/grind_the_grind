@@ -40,9 +40,13 @@ func do_trick(_trick_type : Global.TrickType ) -> float:
 	# print("doing trick ",trick_type)
 	last_trick_time = Time.get_ticks_msec() / 1000.0
 	var prev_anim = model_anim_player.current_animation
+
+	$TrickHitSound.pitch_scale = rng.randf_range(0.8, 1.4)  # Randomize pitch for each trick
 	$TrickHitSound.play()
+	
 	model_anim_player.play("fall")
 	model_anim_player.animation_finished.connect(func (_anim_name) : model_anim_player.play(prev_anim))  # Play air animation after falling
+	
 	_rotate_while_tricking(model_anim_player.current_animation_length)
 	score_manager.do_trick()
 	return model_anim_player.current_animation_length
