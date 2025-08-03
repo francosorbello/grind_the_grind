@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bocig7usld53w"]
+[gd_scene load_steps=41 format=3 uid="uid://bocig7usld53w"]
 
 [ext_resource type="PackedScene" uid="uid://duavsxyyq1h2j" path="res://obstacles/obstacle_generator.tscn" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://cvatelahibnjl" path="res://player/player.tscn" id="1_l1rk1"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://rpmgfmslh26h" path="res://models/GLB format/obstacle-box.glb" id="25_5kt8s"]
 [ext_resource type="PackedScene" uid="uid://bmgmsm3onir1d" path="res://models/city_kit/fence.glb" id="27_hg21n"]
 [ext_resource type="PackedScene" uid="uid://c8eyjs15r7prg" path="res://models/GLB format/pallet.glb" id="29_3bl5q"]
+[ext_resource type="Script" uid="uid://crh007qfx87nq" path="res://game_screens/game/ui_fixer.gd" id="32_epgd6"]
 
 [sub_resource type="Resource" id="Resource_t08ro"]
 script = ExtResource("3_0ydko")
@@ -156,6 +157,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("9_kw303")
 current_funds = ExtResource("4_0ydko")
 metadata/_edit_use_anchors_ = true
@@ -184,16 +186,10 @@ vertical_alignment = 1
 
 [node name="FundsLabel" type="Label" parent="GameUI"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -92.0
-offset_top = 40.0
-offset_right = -1.0
-offset_bottom = 112.0
-grow_horizontal = 0
+offset_right = 91.0
+offset_bottom = 144.0
 theme_override_fonts/font = ExtResource("9_yjec7")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 65
 text = "$0"
 horizontal_alignment = 2
 
@@ -331,5 +327,8 @@ transform = Transform3D(2.74725, -0.00599359, 1.20522, 0.00654498, 2.99999, 0, -
 
 [node name="half-pipe2" parent="." instance=ExtResource("21_8c02a")]
 transform = Transform3D(-1.00141, 0, -0.93082, 0, 1, 0, 2.55045, 0, -0.365478, 6.5545, 0.432955, 2.74064)
+
+[node name="UIFixer" type="Node" parent="."]
+script = ExtResource("32_epgd6")
 
 [connection signal="timeout" from="Music/StartTimer" to="Music" method="_on_start_timer_timeout"]

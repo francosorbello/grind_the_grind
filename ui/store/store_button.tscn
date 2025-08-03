@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcbjkfyxpxvg2"]
+[gd_scene load_steps=11 format=3 uid="uid://dcbjkfyxpxvg2"]
 
 [ext_resource type="Script" uid="uid://bno6mxoc6wp4k" path="res://ui/store/store_button.gd" id="1_bmlks"]
 [ext_resource type="Resource" uid="uid://by3lyx2rfri5m" path="res://funds/upgrade_prices.tres" id="2_abg4j"]
@@ -7,6 +7,23 @@
 [ext_resource type="Resource" uid="uid://bfc16jmccsrdj" path="res://funds/current_funds.tres" id="3_yqx01"]
 [ext_resource type="Texture2D" uid="uid://chdew6t5wytf3" path="res://ui/store/icons/skater.png" id="4_ncqft"]
 [ext_resource type="FontFile" uid="uid://ca45dnpmcfk5l" path="res://ui/Fonts/Teko-Medium.ttf" id="7_djwwv"]
+[ext_resource type="StyleBox" uid="uid://ci033e8d107it" path="res://ui/store/store_button.tres" id="8_djwwv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkfjr"]
+content_margin_left = 0.0
+content_margin_top = 10.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.884539, 0.453244, 0.789856, 1)
+skew = Vector2(0, 0.065)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djwwv"]
+content_margin_left = 0.0
+content_margin_top = 10.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.811765, 0.313726, 0.713726, 1)
+skew = Vector2(0, 0.065)
 
 [node name="StoreButton" type="Control"]
 layout_mode = 3
@@ -31,6 +48,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("7_djwwv")
 theme_override_font_sizes/font_size = 0
+theme_override_styles/disabled = ExtResource("8_djwwv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lkfjr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_djwwv")
 text = "Stat Name"
 icon = ExtResource("3_vgr6n")
 icon_alignment = 1

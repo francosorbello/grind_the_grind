@@ -1,10 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://4d6flvbws1q4"]
+[gd_scene load_steps=6 format=3 uid="uid://4d6flvbws1q4"]
 
 [ext_resource type="Script" uid="uid://bd80up3oagytd" path="res://ui/store/store_ui.gd" id="1_kv461"]
 [ext_resource type="FontFile" uid="uid://ca45dnpmcfk5l" path="res://ui/Fonts/Teko-Medium.ttf" id="3_1w4gj"]
 [ext_resource type="PackedScene" uid="uid://dcbjkfyxpxvg2" path="res://ui/store/store_button.tscn" id="3_kv461"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1w4gj"]
+bg_color = Color(1, 0.397701, 0.329255, 1)
+skew = Vector2(0, 0.065)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kv461"]
+bg_color = Color(0.905882, 0, 0, 1)
+skew = Vector2(0, 0.065)
+
 [node name="StoreUI" type="Control"]
+top_level = true
+z_index = 170
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 20
 alignment = 1
 
 [node name="UpgradeGrind" parent="VBoxContainer" instance=ExtResource("3_kv461")]
@@ -41,18 +51,21 @@ stat_type = 2
 
 [node name="CloseButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_hover_color = Color(0.351563, 0.351563, 0.351563, 1)
 theme_override_fonts/font = ExtResource("3_1w4gj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1w4gj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kv461")
 text = "CLOSE"
-flat = true
 
 [node name="OpenButton" type="Button" parent="."]
+z_index = 285
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -8.0
-offset_bottom = 8.0
+offset_left = -109.0
+offset_top = 26.0
+offset_right = -31.0
+offset_bottom = 64.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("3_1w4gj")
 theme_override_font_sizes/font_size = 20
