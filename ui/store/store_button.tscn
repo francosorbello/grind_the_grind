@@ -26,6 +26,7 @@ bg_color = Color(0.811765, 0.313726, 0.713726, 1)
 skew = Vector2(0, 0.065)
 
 [node name="StoreButton" type="Control"]
+custom_minimum_size = Vector2(0, 180)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 109.0
@@ -47,7 +48,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("7_djwwv")
-theme_override_font_sizes/font_size = 0
+theme_override_font_sizes/font_size = 50
 theme_override_styles/disabled = ExtResource("8_djwwv")
 theme_override_styles/hover = SubResource("StyleBoxFlat_lkfjr")
 theme_override_styles/normal = SubResource("StyleBoxFlat_djwwv")
@@ -55,5 +56,6 @@ text = "Stat Name"
 icon = ExtResource("3_vgr6n")
 icon_alignment = 1
 vertical_icon_alignment = 0
+expand_icon = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

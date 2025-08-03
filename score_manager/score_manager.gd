@@ -15,6 +15,8 @@ class_name ScoreManager
 @export_group("UI")
 @export var game_ui : Control
 
+var _grind_fund_treshold : int = 100 #every 100 grind points, funds are added
+var _multiplier_fund_treshold : int = 10 #every 10 tricks, funds are added
 
 func _ready():
     $GrindingTimer.timeout.connect(on_grinding_timeout)
@@ -62,12 +64,21 @@ func increment_speed():
 # increment grind points while grinding
 func increment_grind_points() -> void:
     grind_points.value += stats[Global.StatType.GRIND].value
+    if grind_points.value >= _grind_fund_treshold:
+        print("Grind points reached threshold: ", _grind_fund_treshold)
+        current_funds.add_funds(10 + grind_points.value * 0.01 as int) # Add 10% of grind points as funds
+        _grind_fund_treshold += 100
+        print("--1--")
     calculate_current_score()
 
 func do_trick() -> void:
     trick_points.value += stats[Global.StatType.TRICK].value
     increment_trick_multiplier()  # Increment the trick multiplier when a trick is done
     calculate_current_score()
+    if trick_multiplier.value >= _multiplier_fund_treshold:
+        current_funds.add_funds(5 + stats[Global.StatType.TRICK].value * 0.01 as int) # Add 1% of trick points as funds
+        _multiplier_fund_treshold += 10
+        print("--2--")
 
 func increment_trick_multiplier():
     trick_multiplier.value += 1 

@@ -17,3 +17,10 @@ enum TrickType {
     TRICK_x,
     TRICK_C    
 }
+
+enum FundReason {
+    NONE,
+    COIN_PICKUP,
+    GRIND_100,
+    TRICK_10,
+}

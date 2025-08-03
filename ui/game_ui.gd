@@ -21,4 +21,7 @@ func format_trick_score(trick_score: int, trick_multiplier: int) -> String:
 	return "%d x %d" % [trick_score, trick_multiplier]
 
 func _on_funds_value_changed(new_value: int) -> void:
+	var tween := create_tween()
 	$FundsLabel.text = "$%d" % new_value
+	tween.tween_property($FundsLabel, "scale", Vector2(1.5, 1.5), 0.2)
+	tween.tween_property($FundsLabel, "scale", Vector2(1, 1), 0.2)
