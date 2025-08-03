@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bocig7usld53w"]
+[gd_scene load_steps=40 format=3 uid="uid://bocig7usld53w"]
 
 [ext_resource type="PackedScene" uid="uid://duavsxyyq1h2j" path="res://obstacles/obstacle_generator.tscn" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://cvatelahibnjl" path="res://player/player.tscn" id="1_l1rk1"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://bhx4bvq3rke14" path="res://music/Musinova - Playful Glitch IDM Electronic.mp3.mp3" id="18_26nvy"]
 [ext_resource type="AudioStream" uid="uid://cas8gff8iex2a" path="res://music/Musinova - Technology Electronic Ambient IDM.mp3.mp3" id="19_isy70"]
 [ext_resource type="PackedScene" uid="uid://dwxnsuwrxi8nr" path="res://models/GLB format/half-pipe.glb" id="21_8c02a"]
+[ext_resource type="Script" uid="uid://cksf1f26q3j4m" path="res://music/music.gd" id="21_8kja6"]
 [ext_resource type="PackedScene" uid="uid://bbsb3ir5uvg8l" path="res://models/GLB format/rail-high.glb" id="22_igy8q"]
 [ext_resource type="PackedScene" uid="uid://bferqw4rdjn7g" path="res://models/GLB format/rail-low.glb" id="23_8nrn3"]
 [ext_resource type="PackedScene" uid="uid://cblcve3y4oao1" path="res://models/GLB format/skateboard.glb" id="23_igy8q"]
@@ -132,7 +133,7 @@ transform = Transform3D(-0.985145, 0, -0.171723, 0, 1, 0, 0.171723, 0, -0.985145
 score_manager = NodePath("../../../Managers/ScoreManager")
 
 [node name="PathVisual" type="CSGPolygon3D" parent="GrindPath" node_paths=PackedStringArray("path")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.844416, 0.134206)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.825, 0)
 polygon = PackedVector2Array(0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0)
 mode = 2
 path_node = NodePath("")
@@ -202,7 +203,12 @@ score_manager = NodePath("../Managers/ScoreManager")
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamPlaylist_2brpg")
 volume_db = -10.4
-autoplay = true
+script = ExtResource("21_8kja6")
+
+[node name="StartTimer" type="Timer" parent="Music"]
+wait_time = 0.5
+one_shot = true
+autostart = true
 
 [node name="PrettyThings" type="Node3D" parent="."]
 
@@ -325,3 +331,5 @@ transform = Transform3D(2.74725, -0.00599359, 1.20522, 0.00654498, 2.99999, 0, -
 
 [node name="half-pipe2" parent="." instance=ExtResource("21_8c02a")]
 transform = Transform3D(-1.00141, 0, -0.93082, 0, 1, 0, 2.55045, 0, -0.365478, 6.5545, 0.432955, 2.74064)
+
+[connection signal="timeout" from="Music/StartTimer" to="Music" method="_on_start_timer_timeout"]

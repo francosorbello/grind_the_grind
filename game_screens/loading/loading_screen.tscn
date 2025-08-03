@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2lokka8xanyr"]
+
+[ext_resource type="FontFile" uid="uid://ca45dnpmcfk5l" path="res://ui/Fonts/Teko-Medium.ttf" id="1_ftpec"]
+[ext_resource type="Script" uid="uid://cjmxqpi51jrtg" path="res://addons/ninetailsrabbit.indie_blueprint_scene_transition/src/loading_screen/loading_screen.gd" id="2_v21bk"]
+[ext_resource type="Script" uid="uid://ditn0tqqqjnmj" path="res://game_screens/loading/loading_text.gd" id="3_gbfjc"]
+
+[node name="LoadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_v21bk")
+next_scene_path = "uid://bocig7usld53w"
+metadata/_custom_type_script = "uid://cjmxqpi51jrtg"
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Container"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -176.0
+offset_top = -72.0
+offset_right = -11.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_ftpec")
+theme_override_font_sizes/font_size = 50
+text = "LOADING..."
+script = ExtResource("3_gbfjc")
+
+[node name="Timer" type="Timer" parent="Container/Label"]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Container/Label/Timer" to="Container/Label" method="_on_timer_timeout"]
