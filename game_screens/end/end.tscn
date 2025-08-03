@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bcwfm3mw5710y"]
+[gd_scene load_steps=15 format=3 uid="uid://bcwfm3mw5710y"]
 
 [ext_resource type="Script" uid="uid://b6cwysyd16c11" path="res://game_screens/end/end_controller.gd" id="1_6hflv"]
 [ext_resource type="FontFile" uid="uid://ca45dnpmcfk5l" path="res://ui/Fonts/Teko-Medium.ttf" id="1_wd8fe"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cblcve3y4oao1" path="res://models/GLB format/skateboard.glb" id="3_rl7ms"]
 [ext_resource type="PackedScene" uid="uid://c8eyjs15r7prg" path="res://models/GLB format/pallet.glb" id="4_rh557"]
 [ext_resource type="PackedScene" uid="uid://cgb52i2a2634r" path="res://models/GLB format/character-skate-boy.glb" id="5_kb6us"]
+[ext_resource type="Script" uid="uid://crh007qfx87nq" path="res://game_screens/game/ui_fixer.gd" id="8_kpg7s"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kb6us"]
 sky_top_color = Color(0.996078, 0.921569, 0.964706, 1)
@@ -171,6 +172,9 @@ theme_override_font_sizes/font_size = 40
 theme_override_styles/hover = SubResource("StyleBoxFlat_8s13h")
 theme_override_styles/normal = SubResource("StyleBoxFlat_l4m8a")
 text = "RESET"
+
+[node name="UIFixer" type="Node" parent="."]
+script = ExtResource("8_kpg7s")
 
 [connection signal="pressed" from="VBoxContainer/ResetButton" to="EndController" method="_on_reset_button_pressed"]
 

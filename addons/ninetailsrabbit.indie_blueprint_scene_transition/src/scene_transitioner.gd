@@ -73,6 +73,7 @@ func transition_to(
 ) -> void:
 	## A current transition is happening
 	if is_processing() or not next_scene_path.is_empty():
+		print(is_processing(), next_scene_path)
 		return
 	
 	next_scene_path = _get_scene_path(scene)

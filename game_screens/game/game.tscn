@@ -1,6 +1,5 @@
-[gd_scene load_steps=46 format=3 uid="uid://bocig7usld53w"]
+[gd_scene load_steps=45 format=3 uid="uid://bocig7usld53w"]
 
-[ext_resource type="PackedScene" uid="uid://duavsxyyq1h2j" path="res://obstacles/obstacle_generator.tscn" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://cvatelahibnjl" path="res://player/player.tscn" id="1_l1rk1"]
 [ext_resource type="Script" uid="uid://bp2gijcc1enr5" path="res://game_screens/game/game.gd" id="1_txhlf"]
 [ext_resource type="Script" uid="uid://dfkq4o22ymhr1" path="res://game_screens/game/grind_path.gd" id="1_vasa2"]
@@ -121,12 +120,6 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 current = true
 fov = 4.0
 size = 11.476
-
-[node name="ObstacleGenerator" parent="." node_paths=PackedStringArray("path") instance=ExtResource("1_h7iqs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.297629, 0.865234, 0)
-path = NodePath("../GrindPath")
-height_offset = -0.1
-obstacles_enabled = false
 
 [node name="GrindPath" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.833929, 0)

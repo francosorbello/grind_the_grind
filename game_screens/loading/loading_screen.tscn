@@ -12,7 +12,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_v21bk")
-next_scene_path = "uid://bocig7usld53w"
 metadata/_custom_type_script = "uid://cjmxqpi51jrtg"
 
 [node name="Container" type="Control" parent="."]
