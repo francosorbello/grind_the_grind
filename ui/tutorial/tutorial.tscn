@@ -1,0 +1,187 @@
+[gd_scene load_steps=3 format=3 uid="uid://bokkdl1gl3a1l"]
+
+[ext_resource type="Script" uid="uid://bn70y6t03a2qm" path="res://ui/tutorial/tutorial.gd" id="1_8pb1l"]
+[ext_resource type="FontFile" uid="uid://ca45dnpmcfk5l" path="res://ui/Fonts/Teko-Medium.ttf" id="1_tkdws"]
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8pb1l")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="JumpText" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.0
+offset_top = 248.0
+offset_right = 182.0
+offset_bottom = 306.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_tkdws")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[pulse freq=1.0 color=#ffffff80 ease=-1.0] Press [color=FFAAA0] [SPACE] [/color] to jump. [/pulse]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="JumpText"]
+modulate = Color(1, 1, 1, 0.517647)
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StoreText" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -620.0
+offset_top = 12.0
+offset_right = -145.0
+offset_bottom = 70.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("1_tkdws")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[pulse freq=1.0 color=#ffffff80 ease=-1.0]Buy upgrades from the [color=FFAAA0] [STORE] --> [/color][/pulse]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="StoreText"]
+modulate = Color(1, 1, 1, 0.517647)
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BailText" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -608.0
+offset_top = -90.0
+offset_right = -126.0
+offset_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("1_tkdws")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "[pulse freq=1.0 color=#ffffff80 ease=-1.0]Finish the run by pressing[color=FFAAA0] K[/color] or[color=FFAAA0] this button --> [/color][/pulse]
+(not now tho)"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="BailText"]
+modulate = Color(1, 1, 1, 0.517647)
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TrickText" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = 222.0
+offset_right = 225.0
+offset_bottom = 338.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_tkdws")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[pulse freq=1.0 color=#ffffff80 ease=-1.0]While on the air, press [color=FFAAA0] [Z/X/C] [/color] to do tricks.[/pulse]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="TrickText"]
+modulate = Color(1, 1, 1, 0.517647)
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EndText" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = 222.0
+offset_right = 225.0
+offset_bottom = 338.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_tkdws")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[pulse freq=1.0 color=#ffffff80 ease=-1.0]Rack up points and money by [color=FFAAA0] [GRINDING] and [DOING TRICKS] [/color]![/pulse]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="EndText"]
+modulate = Color(1, 1, 1, 0.517647)
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BailTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="BailTimer" to="." method="_on_bail_timer_timeout"]

@@ -22,6 +22,7 @@ func exit():
 func handle_sm_input(event: InputEvent) -> void:
     if event.is_action_released("trick"):
         owner.do_trick(owner.trick_moves[event.keycode])
+        $TutorialNotifier.notify() 
     if event.is_action_released("jump"):
         state_machine.transition_to("FallingState") 
 

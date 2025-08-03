@@ -2,7 +2,8 @@ extends Node
 
 enum GameEvent
 {
-    GE_DEFAULT
+    GE_DEFAULT,
+    GE_TUTORIAL
 }
 
 class GESuscriber:
@@ -28,3 +29,9 @@ func emit(event : GameEvent, message : Dictionary = {}):
     for suscriber : GESuscriber in suscribers:
         if suscriber.is_valid():
             suscriber.execute(event,message)
+
+func unsuscribe(node : Node):
+    for i in range(suscribers.size()):
+        if suscribers[i].owner == node:
+            suscribers.erase(i)
+            break

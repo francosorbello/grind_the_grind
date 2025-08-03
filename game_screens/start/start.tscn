@@ -65,18 +65,18 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -400.0
-offset_top = -264.5
+offset_top = -236.5
 offset_right = 400.0
-offset_bottom = 56.5
+offset_bottom = 84.5
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("3_hb8m6")
-theme_override_font_sizes/normal_font_size = 180
+theme_override_font_sizes/normal_font_size = 147
 bbcode_enabled = true
-text = "[wave amp=100 freq=3]KILLER GRIND[/wave]"
+text = "[wave amp=100 freq=3]GRIND THE GRIND[/wave]"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1
@@ -148,10 +148,10 @@ transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44382e-15, 0.02625, -0.02875)
 
 [node name="arm-left" parent="SubViewport/character-skate-boy2/Skeleton3D" index="3"]
-transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.0998968, 0.13775, -0.01725)
+transform = Transform3D(0.707108, 0.707106, 0, -0.707106, 0.707108, 0, 0, 0, 1, 0.0998968, 0.13775, -0.01725)
 
 [node name="arm-right" parent="SubViewport/character-skate-boy2/Skeleton3D" index="4"]
-transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -0.0998968, 0.13775, -0.01725)
+transform = Transform3D(0.707108, -0.707106, 0, 0.707106, 0.707108, 0, 0, 0, 1, -0.0998968, 0.13775, -0.01725)
 
 [node name="head" parent="SubViewport/character-skate-boy2/Skeleton3D" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81969e-09, 0.19325, -0.00236122)

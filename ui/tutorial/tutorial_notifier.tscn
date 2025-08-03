@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b47nav4x013eg"]
+
+[ext_resource type="Script" uid="uid://dhmq0fmdhech6" path="res://ui/tutorial/tutorial_notifier.gd" id="1_opoom"]
+
+[node name="TutorialNotifier" type="Node"]
+script = ExtResource("1_opoom")

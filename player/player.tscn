@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cvatelahibnjl"]
+[gd_scene load_steps=23 format=3 uid="uid://cvatelahibnjl"]
 
 [ext_resource type="PackedScene" uid="uid://c3itpu6mcpoxw" path="res://player/player_model.tscn" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://blqtmgtug40cy" path="res://player/player.gd" id="1_rkbax"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cp0a6k0rgs0oe" path="res://player/states/jumping_state.gd" id="8_rgyib"]
 [ext_resource type="Script" uid="uid://bwy28vxbwgmir" path="res://player/states/falling_state.gd" id="9_hg6s5"]
 [ext_resource type="Script" uid="uid://ca5b2et3hhy34" path="res://player/states/on_air_state.gd" id="10_8t03j"]
+[ext_resource type="PackedScene" uid="uid://b47nav4x013eg" path="res://ui/tutorial/tutorial_notifier.tscn" id="10_c35mf"]
 [ext_resource type="AudioStream" uid="uid://clpr7406lo1mm" path="res://player/nicer_kick.ogg" id="10_ebec5"]
 [ext_resource type="AudioStream" uid="uid://djnbnd5l05yym" path="res://player/wind.mp3" id="13_kb6p2"]
 [ext_resource type="Script" uid="uid://cxk465kyvfrs3" path="res://player/wind_sound.gd" id="14_wodsf"]
@@ -70,6 +71,9 @@ jump_travel_time = 0.3
 [node name="JumpSound" type="AudioStreamPlayer" parent="StateMachine/JumpingState"]
 stream = ExtResource("8_ebec5")
 
+[node name="TutorialNotifier" parent="StateMachine/JumpingState" instance=ExtResource("10_c35mf")]
+mesage = "jump"
+
 [node name="FallingState" type="Node" parent="StateMachine"]
 script = ExtResource("9_hg6s5")
 fall_travel_time = 0.17
@@ -92,6 +96,9 @@ stream = ExtResource("5_qjkh3")
 stream = ExtResource("13_kb6p2")
 volume_db = -80.0
 script = ExtResource("14_wodsf")
+
+[node name="TutorialNotifier" parent="StateMachine/OnAirState" instance=ExtResource("10_c35mf")]
+mesage = "trick"
 
 [node name="DeadState" type="Node" parent="StateMachine"]
 script = ExtResource("16_e7oew")

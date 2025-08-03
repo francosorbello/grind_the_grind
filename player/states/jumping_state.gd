@@ -10,6 +10,7 @@ func enter():
     $JumpSound.play()
     owner.do_grab_anim()  # Play grab animation when entering the on-air state
     _final_height = owner.player_model.position.y + owner.jump_height
+    $TutorialNotifier.notify()
 
 func exit():
     _sample_point = 0.0  # Reset the sample point when exiting the state

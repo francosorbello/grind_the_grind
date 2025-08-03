@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bocig7usld53w"]
+[gd_scene load_steps=46 format=3 uid="uid://bocig7usld53w"]
 
 [ext_resource type="PackedScene" uid="uid://duavsxyyq1h2j" path="res://obstacles/obstacle_generator.tscn" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://cvatelahibnjl" path="res://player/player.tscn" id="1_l1rk1"]
@@ -19,8 +19,10 @@
 [ext_resource type="PackedScene" uid="uid://c1f6nlxrlajff" path="res://ui/info_message.tscn" id="15_fuw7p"]
 [ext_resource type="AudioStream" uid="uid://mi2fo0ecxf45" path="res://music/Musinova - Pool Party (House Funk Disco).mp3.mp3" id="16_lbdsk"]
 [ext_resource type="AudioStream" uid="uid://car3l1yv1pi2u" path="res://music/Ketsa - My Town.mp3" id="17_0g76f"]
+[ext_resource type="PackedScene" uid="uid://bokkdl1gl3a1l" path="res://ui/tutorial/tutorial.tscn" id="17_pn7ch"]
 [ext_resource type="AudioStream" uid="uid://bhx4bvq3rke14" path="res://music/Musinova - Playful Glitch IDM Electronic.mp3.mp3" id="18_26nvy"]
 [ext_resource type="AudioStream" uid="uid://cas8gff8iex2a" path="res://music/Musinova - Technology Electronic Ambient IDM.mp3.mp3" id="19_isy70"]
+[ext_resource type="Texture2D" uid="uid://cd1omkmggytm8" path="res://ui/store/icons/exit.png" id="19_yw4jq"]
 [ext_resource type="PackedScene" uid="uid://dwxnsuwrxi8nr" path="res://models/GLB format/half-pipe.glb" id="21_8c02a"]
 [ext_resource type="Script" uid="uid://cksf1f26q3j4m" path="res://music/music.gd" id="21_8kja6"]
 [ext_resource type="PackedScene" uid="uid://bbsb3ir5uvg8l" path="res://models/GLB format/rail-high.glb" id="22_igy8q"]
@@ -61,6 +63,14 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_om5sn"]
+bg_color = Color(0.472284, 0.561961, 0.923557, 1)
+corner_radius_top_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5hjm"]
+bg_color = Color(0.407843, 0.498039, 0.898039, 1)
+corner_radius_top_left = 10
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2brpg"]
 shuffle = true
@@ -198,6 +208,30 @@ horizontal_alignment = 2
 [node name="StoreUI" parent="." node_paths=PackedStringArray("score_manager") instance=ExtResource("9_8usfm")]
 score_manager = NodePath("../Managers/ScoreManager")
 
+[node name="BailOutButton" type="Button" parent="StoreUI"]
+z_index = 285
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -80.0
+grow_horizontal = 0
+grow_vertical = 0
+tooltip_text = "Bail out! (end run)"
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_om5sn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_r5hjm")
+icon = ExtResource("19_yw4jq")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Tutorial" parent="." instance=ExtResource("17_pn7ch")]
+mouse_filter = 2
+
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamPlaylist_2brpg")
 volume_db = -10.4
@@ -327,10 +361,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.89275, 0.248016, 2.95057)
 [node name="obstacle-box3" parent="PrettyThings" instance=ExtResource("25_5kt8s")]
 transform = Transform3D(2.74725, -0.00599359, 1.20522, 0.00654498, 2.99999, 0, -1.20522, 0.00262938, 2.74726, 5.69436, 0.484115, -3.95058)
 
-[node name="half-pipe2" parent="." instance=ExtResource("21_8c02a")]
+[node name="half-pipe2" parent="PrettyThings" instance=ExtResource("21_8c02a")]
 transform = Transform3D(-1.00141, 0, -0.93082, 0, 1, 0, 2.55045, 0, -0.365478, 6.5545, 0.432955, 2.74064)
 
 [node name="UIFixer" type="Node" parent="."]
 script = ExtResource("32_epgd6")
 
+[connection signal="pressed" from="StoreUI/BailOutButton" to="." method="_on_bail_out_button_pressed"]
 [connection signal="timeout" from="Music/StartTimer" to="Music" method="_on_start_timer_timeout"]

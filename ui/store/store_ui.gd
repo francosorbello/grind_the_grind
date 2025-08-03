@@ -13,6 +13,7 @@ func open():
 func close():
 	var tween = create_tween()
 	tween.tween_property($VBoxContainer, "scale", Vector2(1, 0), 0.2)
+	$TutorialNotifier.notify()
 
 func _on_store_button_pressed(stat_type: Global.StatType) -> void:
 	if score_manager is ScoreManager:

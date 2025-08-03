@@ -21,3 +21,7 @@ func lose_game() -> void:
 func _process(_delta):
     if Input.is_action_just_released("bail"):
         lose_game()
+
+func _on_bail_out_button_pressed() -> void:
+    lose_game()
+    pass # Replace with function body.
