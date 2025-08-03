@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bocig7usld53w"]
+[gd_scene load_steps=39 format=3 uid="uid://bocig7usld53w"]
 
 [ext_resource type="PackedScene" uid="uid://duavsxyyq1h2j" path="res://obstacles/obstacle_generator.tscn" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://cvatelahibnjl" path="res://player/player.tscn" id="1_l1rk1"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://dt4lnwe0ktmvo" path="res://models/city_kit/tree-large.glb" id="24_e7cbi"]
 [ext_resource type="PackedScene" uid="uid://dgx6om1unxvg6" path="res://models/city_kit/tree-small.glb" id="24_fkswu"]
 [ext_resource type="PackedScene" uid="uid://dpff0wyvhoatr" path="res://models/city_kit/planter.glb" id="24_mng32"]
+[ext_resource type="PackedScene" uid="uid://rpmgfmslh26h" path="res://models/GLB format/obstacle-box.glb" id="25_5kt8s"]
 [ext_resource type="PackedScene" uid="uid://bmgmsm3onir1d" path="res://models/city_kit/fence.glb" id="27_hg21n"]
 [ext_resource type="PackedScene" uid="uid://c8eyjs15r7prg" path="res://models/GLB format/pallet.glb" id="29_3bl5q"]
 
@@ -134,7 +135,7 @@ score_manager = NodePath("../../../Managers/ScoreManager")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.844416, 0.134206)
 polygon = PackedVector2Array(0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0)
 mode = 2
-path_node = NodePath("..")
+path_node = NodePath("")
 path_interval_type = 0
 path_interval = 0.66
 path_simplify_angle = 0.0
@@ -240,6 +241,9 @@ transform = Transform3D(-0.539647, -0.185431, 0.821216, -0.0729985, -0.961463, -
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.778226, 0.502814, -0.011781)
 visible = false
 
+[node name="obstacle-box2" parent="PrettyThings" instance=ExtResource("25_5kt8s")]
+transform = Transform3D(2.63237, 0, -1.43897, 0, 3, 0, 1.43897, 0, 2.63237, -5.32633, 1.29016, -5.20187)
+
 [node name="planter2" parent="PrettyThings" instance=ExtResource("24_mng32")]
 transform = Transform3D(2.86055, 0, 0.904015, 0, 3, 0, -0.904015, 0, 2.86055, -8.39198, 0.475798, 3.38188)
 visible = false
@@ -249,10 +253,20 @@ transform = Transform3D(0.955098, 0, 0.296292, 0, 1, 0, -0.296292, 0, 0.955098, 
 material_override = SubResource("StandardMaterial3D_igy8q")
 size = Vector3(3.34277, 1, 1.77002)
 
+[node name="FloorSmall3" type="CSGBox3D" parent="PrettyThings"]
+transform = Transform3D(0.474995, 0, 0.879989, 0, 1, 0, -0.879989, 0, 0.474995, -5.77821, 0.623015, -4.07038)
+material_override = SubResource("StandardMaterial3D_igy8q")
+size = Vector3(5.23889, 1, 2.94604)
+
 [node name="FloorSmall2" type="CSGBox3D" parent="PrettyThings"]
 transform = Transform3D(0.944342, 0, -0.328965, 0, 1, 0, 0.328965, 0, 0.944342, 5.48111, -0.255935, 2.18932)
 material_override = SubResource("StandardMaterial3D_igy8q")
 size = Vector3(3.65869, 1, 2.81458)
+
+[node name="FloorSmall4" type="CSGBox3D" parent="PrettyThings"]
+transform = Transform3D(0.421495, 0, -0.906831, 0, 1, 0, 0.906831, 0, 0.421495, 5.71187, -0.255935, -4.00827)
+material_override = SubResource("StandardMaterial3D_igy8q")
+size = Vector3(3.65869, 1, 3.3235)
 
 [node name="fence2" parent="PrettyThings" instance=ExtResource("27_hg21n")]
 transform = Transform3D(2.8771, 0, 0.849887, 0, 3, 0, -0.849887, 0, 2.8771, -5.39843, 0.374648, 1.44894)
@@ -305,6 +319,9 @@ transform = Transform3D(0.916719, 0.155975, 0.367829, 0, 0.920648, -0.390394, -0
 
 [node name="pallet4" parent="PrettyThings/pallet_cluster" instance=ExtResource("29_3bl5q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.89275, 0.248016, 2.95057)
+
+[node name="obstacle-box3" parent="PrettyThings" instance=ExtResource("25_5kt8s")]
+transform = Transform3D(2.74725, -0.00599359, 1.20522, 0.00654498, 2.99999, 0, -1.20522, 0.00262938, 2.74726, 5.69436, 0.484115, -3.95058)
 
 [node name="half-pipe2" parent="." instance=ExtResource("21_8c02a")]
 transform = Transform3D(-1.00141, 0, -0.93082, 0, 1, 0, 2.55045, 0, -0.365478, 6.5545, 0.432955, 2.74064)
