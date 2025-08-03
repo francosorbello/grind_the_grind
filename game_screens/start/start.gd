@@ -3,11 +3,7 @@ extends Control
 @export var game_scene : PackedScene
 
 func _on_start_btn_pressed() -> void:
-	# IndieBlueprintSceneTransitioner.transition_to(
-	# 	game_scene.resource_path,
-	# 	IndieBlueprintPremadeTransitions.Voronoi,
-	# 	IndieBlueprintPremadeTransitions.Voronoi
-	# )
+	$ClickSound.play() 
 	IndieBlueprintSceneTransitioner.transition_to_with_loading_screen(
 		game_scene.resource_path,
 		"res://game_screens/loading/loading_screen.tscn",

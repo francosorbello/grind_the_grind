@@ -1,7 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://1grptrcixvqk"]
+[gd_scene load_steps=16 format=3 uid="uid://1grptrcixvqk"]
 
 [ext_resource type="Script" uid="uid://dw38xvtjdp1yc" path="res://game_screens/start/start.gd" id="1_5eava"]
 [ext_resource type="PackedScene" uid="uid://bocig7usld53w" path="res://game_screens/game/game.tscn" id="2_nlsap"]
+[ext_resource type="FontFile" uid="uid://ca45dnpmcfk5l" path="res://ui/Fonts/Teko-Medium.ttf" id="3_hb8m6"]
+[ext_resource type="AudioStream" uid="uid://bhx4bvq3rke14" path="res://music/Musinova - Playful Glitch IDM Electronic.mp3.mp3" id="4_5xi0l"]
+[ext_resource type="PackedScene" uid="uid://bbsb3ir5uvg8l" path="res://models/GLB format/rail-high.glb" id="5_1dk11"]
+[ext_resource type="AudioStream" uid="uid://csafkl2yg48y7" path="res://ui/click_001.ogg" id="5_7qe8q"]
+[ext_resource type="PackedScene" uid="uid://cblcve3y4oao1" path="res://models/GLB format/skateboard.glb" id="5_qx3kx"]
+[ext_resource type="PackedScene" uid="uid://cgb52i2a2634r" path="res://models/GLB format/character-skate-boy.glb" id="6_241g4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xi0l"]
+bg_color = Color(0.472284, 0.561961, 0.923557, 1)
+skew = Vector2(0, 0.065)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qx3kx"]
+bg_color = Color(0.407843, 0.498039, 0.898039, 1)
+skew = Vector2(0, 0.065)
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_7qe8q"]
+stream_count = 1
+stream_0 = ExtResource("4_5xi0l")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_241g4"]
+sky_top_color = Color(0.996078, 0.921569, 0.964706, 1)
+sky_horizon_color = Color(1.22686, 1.20048, 1.20226, 1)
+ground_horizon_color = Color(1.22686, 1.20048, 1.20226, 1)
+
+[sub_resource type="Sky" id="Sky_1dk11"]
+sky_material = SubResource("ProceduralSkyMaterial_241g4")
+
+[sub_resource type="Environment" id="Environment_7qe8q"]
+background_mode = 2
+sky = SubResource("Sky_1dk11")
+tonemap_mode = 2
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_241g4"]
+viewport_path = NodePath("SubViewport")
 
 [node name="start" type="Control"]
 layout_mode = 3
@@ -13,19 +47,128 @@ grow_vertical = 2
 script = ExtResource("1_5eava")
 game_scene = ExtResource("2_nlsap")
 
-[node name="StartBtn" type="Button" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.666667, 0.627451, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(800, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -28.0
-offset_top = -15.5
-offset_right = 28.0
-offset_bottom = 15.5
+offset_left = -400.0
+offset_top = -264.5
+offset_right = 400.0
+offset_bottom = 56.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "START"
 
-[connection signal="pressed" from="StartBtn" to="." method="_on_start_btn_pressed"]
+[node name="Label" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_hb8m6")
+theme_override_font_sizes/normal_font_size = 180
+bbcode_enabled = true
+text = "[wave amp=100 freq=3]KILLER GRIND[/wave]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_hb8m6")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxFlat_5xi0l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qx3kx")
+text = "PLAY"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_7qe8q")
+volume_db = -10.0
+autoplay = true
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7qe8q")
+autoplay = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1024, 512)
+
+[node name="rail-high2" parent="SubViewport" instance=ExtResource("5_1dk11")]
+transform = Transform3D(0.322067, 0, 0.946717, 0, 1, 0, -0.946717, 0, 0.322067, 0.666845, -0.991107, 0)
+
+[node name="rail-high3" parent="SubViewport" instance=ExtResource("5_1dk11")]
+transform = Transform3D(0.427295, 0, -0.904112, 0, 1, 0, 0.904112, 0, 0.427295, -0.69759, -1.00357, 0.156376)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport"]
+environment = SubResource("Environment_7qe8q")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport"]
+transform = Transform3D(-0.941879, -0.226673, -0.247957, -0.18358, -0.270862, 0.944951, -0.281357, 0.93555, 0.213507, 0, 0.861044, 0)
+light_energy = 0.3
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.896076, 0.4439, 0, -0.4439, 0.896076, 0, 1.68962, 2.06279)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00663865, -1.03155, 0)
+size = Vector3(7.05127, 0.0574951, 1)
+
+[node name="skateboard2" parent="SubViewport" instance=ExtResource("5_qx3kx")]
+transform = Transform3D(0.574405, 0, 0.818571, 0, 1, 0, -0.818571, 0, 0.574405, 1.80853, -0.982198, -0.054293)
+
+[node name="character-skate-boy2" parent="SubViewport" instance=ExtResource("6_241g4")]
+transform = Transform3D(0.739925, 0, 0.67269, 0, 1, 0, -0.67269, 0, 0.739925, -2.16722, -0.928951, 0.0168045)
+
+[node name="Skeleton3D" parent="SubViewport/character-skate-boy2" index="0"]
+bones/1/position = Vector3(0, -0.15, 0)
+bones/2/rotation = Quaternion(-0.608761, 0, 0, 0.793353)
+bones/3/rotation = Quaternion(-0.608761, 0, 0, 0.793353)
+bones/5/rotation = Quaternion(0, 0, -0.382683, 0.92388)
+bones/6/rotation = Quaternion(0, 0, 0.382683, 0.92388)
+
+[node name="leg-left" parent="SubViewport/character-skate-boy2/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0.083571, 0.02625, -0.02875)
+
+[node name="leg-right" parent="SubViewport/character-skate-boy2/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, -0.083571, 0.02625, -0.02875)
+
+[node name="torso" parent="SubViewport/character-skate-boy2/Skeleton3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44382e-15, 0.02625, -0.02875)
+
+[node name="arm-left" parent="SubViewport/character-skate-boy2/Skeleton3D" index="3"]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.0998968, 0.13775, -0.01725)
+
+[node name="arm-right" parent="SubViewport/character-skate-boy2/Skeleton3D" index="4"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -0.0998968, 0.13775, -0.01725)
+
+[node name="head" parent="SubViewport/character-skate-boy2/Skeleton3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81969e-09, 0.19325, -0.00236122)
+
+[node name="hat" parent="SubViewport/character-skate-boy2/Skeleton3D" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66843e-09, 0.387527, 0.0437584)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_241g4")
+
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_start_btn_pressed"]
+
+[editable path="SubViewport/character-skate-boy2"]
