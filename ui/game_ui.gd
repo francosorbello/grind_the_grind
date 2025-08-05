@@ -43,5 +43,5 @@ func spawn_info_message(reason: Global.FundReason) -> void:
 
 	var msg = info_messages.get(reason, "Unknown event")
 	var info_msg_instance = info_msg_scene.instantiate()
-	add_child(info_msg_instance)
+	$MsgStartPoint.add_child(info_msg_instance)
 	info_msg_instance.start(msg)

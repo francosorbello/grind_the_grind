@@ -198,6 +198,14 @@ theme_override_font_sizes/font_size = 65
 text = "$0"
 horizontal_alignment = 2
 
+[node name="MsgStartPoint" type="Control" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 104.0
+offset_right = 50.0
+offset_bottom = 144.0
+
 [node name="StoreUI" parent="." node_paths=PackedStringArray("score_manager") instance=ExtResource("9_8usfm")]
 score_manager = NodePath("../Managers/ScoreManager")
 

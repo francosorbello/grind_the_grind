@@ -5,7 +5,7 @@ func start(message : String):
     show()
     var tween := create_tween()
 
-    tween.tween_property(self, "position", Vector2(100,120), 0.7)
+    tween.tween_property(self, "position", Vector2(0,30), 0.7)
     tween.tween_property(self, "modulate:a", 0, 0.7)
 
     tween.finished.connect(_on_tween_finished)
