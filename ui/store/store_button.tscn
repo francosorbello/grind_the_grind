@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dcbjkfyxpxvg2"]
+[gd_scene load_steps=10 format=3 uid="uid://dcbjkfyxpxvg2"]
 
 [ext_resource type="Script" uid="uid://bno6mxoc6wp4k" path="res://ui/store/store_button.gd" id="1_bmlks"]
-[ext_resource type="Resource" uid="uid://by3lyx2rfri5m" path="res://funds/upgrade_prices.tres" id="2_abg4j"]
 [ext_resource type="Texture2D" uid="uid://ksfqij7owrqt" path="res://ui/store/icons/rails.png" id="2_mm7rm"]
 [ext_resource type="Texture2D" uid="uid://cwucxu3eccd8x" path="res://ui/store/icons/speed.png" id="3_vgr6n"]
-[ext_resource type="Resource" uid="uid://bfc16jmccsrdj" path="res://funds/current_funds.tres" id="3_yqx01"]
+[ext_resource type="Resource" uid="uid://bfc16jmccsrdj" path="res://funds/resources/current_funds.tres" id="3_yqx01"]
 [ext_resource type="Texture2D" uid="uid://chdew6t5wytf3" path="res://ui/store/icons/skater.png" id="4_ncqft"]
 [ext_resource type="FontFile" uid="uid://ca45dnpmcfk5l" path="res://ui/Fonts/Teko-Medium.ttf" id="7_djwwv"]
 [ext_resource type="StyleBox" uid="uid://ci033e8d107it" path="res://ui/store/store_button.tres" id="8_djwwv"]
@@ -32,7 +31,6 @@ anchors_preset = 0
 offset_right = 109.0
 offset_bottom = 113.0
 script = ExtResource("1_bmlks")
-prices_container = ExtResource("2_abg4j")
 funds = ExtResource("3_yqx01")
 icons = Dictionary[int, Texture2D]({
 0: ExtResource("2_mm7rm"),

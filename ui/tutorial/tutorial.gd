@@ -1,6 +1,8 @@
 extends Control
 
 @onready var timer : Timer = $Timer
+@export_category("Debug")
+@export var debug_disabled : bool = false
 
 var _tutorial_active : bool = false
 var _jump_done : bool = false
@@ -8,8 +10,12 @@ var _trick_done : bool = false
 var _store_closed : bool = false
 
 func _ready() -> void:
+    if OS.is_debug_build() and debug_disabled:
+        mouse_filter = Control.MOUSE_FILTER_IGNORE
+        return
     GlobalEventSystem.suscribe(self, "_on_global_event")
     timer.timeout.connect(_on_timer_timeout)
+
 
 func _on_timer_timeout() -> void:
     $JumpText.visible = true

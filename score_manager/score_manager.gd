@@ -10,7 +10,6 @@ class_name ScoreManager
 @export_group("Stats")
 @export var stats : Dictionary[Global.StatType, StatValue]
 @export var current_funds : FundRes
-@export var prices_container : UpgradePriceContainer
 
 @export_group("UI")
 @export var game_ui : Control
@@ -27,15 +26,15 @@ func _ready():
 func increment_stat(stat_type: Global.StatType, amount: int) -> void:
     stats[stat_type].increment_by(amount)
     # print("incrementing stat %s by %d" % [stat_type, amount])
-    purchase_stat(stat_type)  # Deduct funds when a stat is incremented
+    purchase_stat(stat_type)  
 
 func decrement_stat(stat_type: Global.StatType, amount: int) -> void:
     stats[stat_type].decrement_by(amount)
     # print("decrementing stat %s by %d" % [stat_type, amount])
-    purchase_stat(stat_type)  # Deduct funds when a stat is decremented
+    purchase_stat(stat_type)  
 
 func purchase_stat(stat_type : Global.StatType):
-    current_funds.subtract_funds(prices_container.prices.get(stat_type,0))
+    get_parent().get_node("FundsManager").purchase_stat(stat_type)
 
 #region Increment Functions
 func upgrade_stat(stat_type: Global.StatType) -> void:

@@ -6,15 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://bcwfm3mw5710y" path="res://game_screens/end/end.tscn" id="2_cxkev"]
 [ext_resource type="Script" uid="uid://bj6q8ruywkkrh" path="res://score_manager/point_value.gd" id="3_0ydko"]
 [ext_resource type="PackedScene" uid="uid://cu13ab2ed83x3" path="res://funds/coin_spawner.tscn" id="3_4xgoh"]
-[ext_resource type="Resource" uid="uid://bfc16jmccsrdj" path="res://funds/current_funds.tres" id="4_0ydko"]
+[ext_resource type="Resource" uid="uid://bfc16jmccsrdj" path="res://funds/resources/current_funds.tres" id="4_0ydko"]
 [ext_resource type="PackedScene" uid="uid://8mgl1i6nimrx" path="res://models/GLB format/floor-wood.glb" id="4_26nvy"]
 [ext_resource type="Script" uid="uid://crx6mk28wv1s2" path="res://game_screens/game/path_visual.gd" id="4_ryayy"]
 [ext_resource type="Resource" uid="uid://cgo4b4r5v3vk7" path="res://score_manager/point_values/trick_points.tres" id="4_slubn"]
 [ext_resource type="PackedScene" uid="uid://bo77hwc35sjxe" path="res://score_manager/score_manager.tscn" id="7_slubn"]
-[ext_resource type="Resource" uid="uid://by3lyx2rfri5m" path="res://funds/upgrade_prices.tres" id="8_2brpg"]
 [ext_resource type="PackedScene" uid="uid://4d6flvbws1q4" path="res://ui/store/store_ui.tscn" id="9_8usfm"]
 [ext_resource type="Script" uid="uid://2mnbi61m6kla" path="res://ui/game_ui.gd" id="9_kw303"]
 [ext_resource type="FontFile" uid="uid://ca45dnpmcfk5l" path="res://ui/Fonts/Teko-Medium.ttf" id="9_yjec7"]
+[ext_resource type="PackedScene" uid="uid://d0ltewo8asuxs" path="res://funds/funds_manager.tscn" id="10_yw4jq"]
 [ext_resource type="PackedScene" uid="uid://c1f6nlxrlajff" path="res://ui/info_message.tscn" id="15_fuw7p"]
 [ext_resource type="AudioStream" uid="uid://mi2fo0ecxf45" path="res://music/Musinova - Pool Party (House Funk Disco).mp3.mp3" id="16_lbdsk"]
 [ext_resource type="AudioStream" uid="uid://car3l1yv1pi2u" path="res://music/Ketsa - My Town.mp3" id="17_0g76f"]
@@ -104,8 +104,9 @@ current_funds = ExtResource("4_0ydko")
 [node name="ScoreManager" parent="Managers" node_paths=PackedStringArray("game_ui") instance=ExtResource("7_slubn")]
 trick_points = ExtResource("4_slubn")
 current_funds = ExtResource("4_0ydko")
-prices_container = ExtResource("8_2brpg")
 game_ui = NodePath("../../GameUI")
+
+[node name="FundsManager" parent="Managers" instance=ExtResource("10_yw4jq")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -231,6 +232,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Tutorial" parent="." instance=ExtResource("17_pn7ch")]
+debug_disabled = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamPlaylist_2brpg")

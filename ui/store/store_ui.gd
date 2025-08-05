@@ -15,10 +15,6 @@ func close():
 	tween.tween_property($VBoxContainer, "scale", Vector2(1, 0), 0.2)
 	$TutorialNotifier.notify()
 
-func _on_store_button_pressed(stat_type: Global.StatType) -> void:
-	if score_manager is ScoreManager:
-		print("Upgrading stat: ", stat_type)
-
 
 func _on_close_button_pressed() -> void:
 	close()

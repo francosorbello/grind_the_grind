@@ -9,9 +9,12 @@ func add_funds(amount: int, reason : Global.FundReason = Global.FundReason.NONE)
     value += amount
     value_changed.emit(value,reason)
 
-func subtract_funds(amount: int, reason : Global.FundReason = Global.FundReason.NONE) -> void:
-    value = max(0, value - amount)
-    value_changed.emit(value, reason)
+func subtract_funds(amount: int) -> void:
+    if (value-amount) < 0:
+        push_warning("Substracting more funds than available")
+        return
+    value = value - amount
+    value_changed.emit(value, Global.FundReason.BOUGHT_UPGRADE)
 
 func reset():
     value = 0

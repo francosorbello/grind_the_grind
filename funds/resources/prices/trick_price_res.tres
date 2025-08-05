@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PriceResource" load_steps=2 format=3 uid="uid://dx8w4hiw0hr10"]
+
+[ext_resource type="Script" uid="uid://bgtmtj2ous1md" path="res://funds/resources/price_res.gd" id="1_nv8j6"]
+
+[resource]
+script = ExtResource("1_nv8j6")
+initial_price = 10.0
+coefficient = 1.15
+metadata/_custom_type_script = "uid://bgtmtj2ous1md"

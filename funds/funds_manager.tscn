@@ -1,0 +1,17 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0ltewo8asuxs"]
+
+[ext_resource type="Script" uid="uid://bktvfx68gm1sm" path="res://funds/funds_manager.gd" id="1_con58"]
+[ext_resource type="Script" uid="uid://bgtmtj2ous1md" path="res://funds/resources/price_res.gd" id="2_byaeg"]
+[ext_resource type="Resource" uid="uid://bgmyk3st1o5qm" path="res://funds/resources/prices/grind_price_res.tres" id="3_cjmrm"]
+[ext_resource type="Resource" uid="uid://ci5udx1olo1es" path="res://funds/resources/prices/speed_price_res.tres" id="4_3xdn3"]
+[ext_resource type="Resource" uid="uid://dx8w4hiw0hr10" path="res://funds/resources/prices/trick_price_res.tres" id="5_pcexu"]
+[ext_resource type="Resource" uid="uid://bfc16jmccsrdj" path="res://funds/resources/current_funds.tres" id="6_6g8xu"]
+
+[node name="FundsManager" type="Node"]
+script = ExtResource("1_con58")
+prices = Dictionary[int, ExtResource("2_byaeg")]({
+0: ExtResource("3_cjmrm"),
+1: ExtResource("4_3xdn3"),
+2: ExtResource("5_pcexu")
+})
+funds = ExtResource("6_6g8xu")

@@ -38,7 +38,7 @@ func _on_funds_value_changed(new_value: int, reason : Global.FundReason) -> void
 	spawn_info_message(reason)
 
 func spawn_info_message(reason: Global.FundReason) -> void:
-	if reason == Global.FundReason.NONE:
+	if reason == Global.FundReason.NONE or reason == Global.FundReason.BOUGHT_UPGRADE:
 		return 
 
 	var msg = info_messages.get(reason, "Unknown event")

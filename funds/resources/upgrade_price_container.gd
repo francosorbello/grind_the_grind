@@ -1,4 +1,5 @@
 extends Resource
+## @deprecated: Changed to other system
 class_name UpgradePriceContainer
 
 @export var prices : Dictionary[Global.StatType, int] = {

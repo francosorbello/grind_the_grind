@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="FundRes" load_steps=2 format=3 uid="uid://bfc16jmccsrdj"]
 
-[ext_resource type="Script" uid="uid://bee4i761ouccl" path="res://funds/fund_res.gd" id="1_dmg80"]
+[ext_resource type="Script" uid="uid://bee4i761ouccl" path="res://funds/resources/fund_res.gd" id="1_swpca"]
 
 [resource]
-script = ExtResource("1_dmg80")
+script = ExtResource("1_swpca")
 value = 0
 metadata/_custom_type_script = "uid://bee4i761ouccl"

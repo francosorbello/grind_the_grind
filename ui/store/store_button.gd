@@ -3,7 +3,7 @@ extends Control
 @export var stat_type : Global.StatType
 
 @export_group("Funds")
-@export var prices_container : UpgradePriceContainer
+@export var related_price : PriceResource
 @export var funds : FundRes 
 
 @export_group("Resources")
@@ -26,18 +26,26 @@ var hints : Dictionary[Global.StatType, String] = {
 signal on_store_button_pressed(stat_type: Global.StatType)
 
 func _ready():
+	related_price.upgrade_incremented.connect(_on_upgrade_incremented)
 	setup()
 
 func setup():
 	button.icon = icons.get(stat_type, null)
-	button.text = "Upgrade" + " " + titles.get(stat_type, "Unknown") + "($%d)" % prices_container.prices.get(stat_type, 0)
+	set_text()
 	button.tooltip_text = hints.get(stat_type, "No hint available.")
+
+func set_text():
+	button.text = "Upgrade" + " " + titles.get(stat_type, "Unknown") + "($%d)" % related_price.get_price()
 
 func _on_button_pressed() -> void:
 	on_store_button_pressed.emit(stat_type)
 
+func _on_upgrade_incremented():
+	set_text()	
+	pass
+
 func _process(_delta: float) -> void:
-	if funds.value < prices_container.prices.get(stat_type, 0):
+	if funds.value < related_price.get_price():
 		button.disabled = true
 	else:
 		button.disabled = false
