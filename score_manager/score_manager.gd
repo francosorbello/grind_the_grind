@@ -73,7 +73,6 @@ func do_trick() -> void:
     trick_points.value += stats[Global.StatType.TRICK].value
     increment_trick_multiplier()  # Increment the trick multiplier when a trick is done
     calculate_current_score()
-    print("%d + %d * 0.1 = %d"%[2,int(stats[Global.StatType.TRICK].value), 2 + int(stats[Global.StatType.TRICK].value * 0.1)])
     current_funds.add_funds(2 + int(stats[Global.StatType.TRICK].value * 0.1), Global.FundReason.TRICK_10)
     # if trick_multiplier.value >= _multiplier_fund_treshold:
     #     # current_funds.add_funds(5 + stats[Global.StatType.TRICK].value * 0.01 as int, Global.FundReason.TRICK_10) # Add 1% of trick points as funds

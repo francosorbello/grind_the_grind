@@ -58,10 +58,12 @@ script = ExtResource("5_tqiix")
 
 [node name="GrindState" type="Node" parent="StateMachine"]
 script = ExtResource("7_boad6")
-rotation_speed = null
 
 [node name="GrindSound" type="AudioStreamPlayer" parent="StateMachine/GrindState"]
 stream = ExtResource("6_2ieo8")
+
+[node name="TrickAnimTimer" type="Timer" parent="StateMachine/GrindState"]
+one_shot = true
 
 [node name="JumpingState" type="Node" parent="StateMachine"]
 script = ExtResource("8_rgyib")
