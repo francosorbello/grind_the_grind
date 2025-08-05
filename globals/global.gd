@@ -23,5 +23,6 @@ enum FundReason {
     COIN_PICKUP,
     GRIND_100,
     TRICK_10,
+    TRICK_1,
     BOUGHT_UPGRADE,
 }

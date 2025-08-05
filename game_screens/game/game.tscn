@@ -1,10 +1,9 @@
-[gd_scene load_steps=45 format=3 uid="uid://bocig7usld53w"]
+[gd_scene load_steps=46 format=3 uid="uid://bocig7usld53w"]
 
 [ext_resource type="PackedScene" uid="uid://cvatelahibnjl" path="res://player/player.tscn" id="1_l1rk1"]
 [ext_resource type="Script" uid="uid://bp2gijcc1enr5" path="res://game_screens/game/game.gd" id="1_txhlf"]
 [ext_resource type="Script" uid="uid://dfkq4o22ymhr1" path="res://game_screens/game/grind_path.gd" id="1_vasa2"]
 [ext_resource type="PackedScene" uid="uid://bcwfm3mw5710y" path="res://game_screens/end/end.tscn" id="2_cxkev"]
-[ext_resource type="Script" uid="uid://bj6q8ruywkkrh" path="res://score_manager/point_value.gd" id="3_0ydko"]
 [ext_resource type="PackedScene" uid="uid://cu13ab2ed83x3" path="res://funds/coin_spawner.tscn" id="3_4xgoh"]
 [ext_resource type="Resource" uid="uid://bfc16jmccsrdj" path="res://funds/resources/current_funds.tres" id="4_0ydko"]
 [ext_resource type="PackedScene" uid="uid://8mgl1i6nimrx" path="res://models/GLB format/floor-wood.glb" id="4_26nvy"]
@@ -15,8 +14,11 @@
 [ext_resource type="Script" uid="uid://2mnbi61m6kla" path="res://ui/game_ui.gd" id="9_kw303"]
 [ext_resource type="FontFile" uid="uid://ca45dnpmcfk5l" path="res://ui/Fonts/Teko-Medium.ttf" id="9_yjec7"]
 [ext_resource type="PackedScene" uid="uid://d0ltewo8asuxs" path="res://funds/funds_manager.tscn" id="10_yw4jq"]
+[ext_resource type="Resource" uid="uid://0f7ppn4ikm4k" path="res://score_manager/score_values/current_score.tres" id="13_om5sn"]
 [ext_resource type="PackedScene" uid="uid://c1f6nlxrlajff" path="res://ui/info_message.tscn" id="15_fuw7p"]
+[ext_resource type="Resource" uid="uid://cu5xew64i5jj6" path="res://score_manager/stat_values/SpeedStat.tres" id="15_om5sn"]
 [ext_resource type="AudioStream" uid="uid://mi2fo0ecxf45" path="res://music/Musinova - Pool Party (House Funk Disco).mp3.mp3" id="16_lbdsk"]
+[ext_resource type="Resource" uid="uid://ctv06h38dk23e" path="res://score_manager/stat_values/GrindStat.tres" id="16_r5hjm"]
 [ext_resource type="AudioStream" uid="uid://car3l1yv1pi2u" path="res://music/Ketsa - My Town.mp3" id="17_0g76f"]
 [ext_resource type="PackedScene" uid="uid://bokkdl1gl3a1l" path="res://ui/tutorial/tutorial.tscn" id="17_pn7ch"]
 [ext_resource type="AudioStream" uid="uid://bhx4bvq3rke14" path="res://music/Musinova - Playful Glitch IDM Electronic.mp3.mp3" id="18_26nvy"]
@@ -34,11 +36,6 @@
 [ext_resource type="PackedScene" uid="uid://bmgmsm3onir1d" path="res://models/city_kit/fence.glb" id="27_hg21n"]
 [ext_resource type="PackedScene" uid="uid://c8eyjs15r7prg" path="res://models/GLB format/pallet.glb" id="29_3bl5q"]
 [ext_resource type="Script" uid="uid://crh007qfx87nq" path="res://game_screens/game/ui_fixer.gd" id="32_epgd6"]
-
-[sub_resource type="Resource" id="Resource_t08ro"]
-script = ExtResource("3_0ydko")
-value = 0
-metadata/_custom_type_script = "uid://bj6q8ruywkkrh"
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vasa2"]
 sky_top_color = Color(0.996078, 0.921569, 0.964706, 1)
@@ -89,7 +86,7 @@ albedo_color = Color(0.67451, 0.67451, 0.67451, 1)
 script = ExtResource("1_txhlf")
 lose_screen = ExtResource("2_cxkev")
 player = NodePath("GrindPath/PathFollow3D/Player")
-current_funds = SubResource("Resource_t08ro")
+current_funds = ExtResource("4_0ydko")
 
 [node name="floor-wood2" parent="." instance=ExtResource("4_26nvy")]
 transform = Transform3D(20, 0, 0, 0, 2, 0, 0, 0, 20, 0, 0.153154, 0)
@@ -165,7 +162,11 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("9_kw303")
 current_funds = ExtResource("4_0ydko")
+current_score = ExtResource("13_om5sn")
 info_msg_scene = ExtResource("15_fuw7p")
+debug_enabled = true
+speed_stat = ExtResource("15_om5sn")
+grind_stat = ExtResource("16_r5hjm")
 metadata/_edit_use_anchors_ = true
 
 [node name="ComboLabel" type="RichTextLabel" parent="GameUI"]
@@ -199,6 +200,20 @@ theme_override_font_sizes/font_size = 65
 text = "$0"
 horizontal_alignment = 2
 
+[node name="ScoreLabel" type="Label" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.5
+offset_right = 45.5
+offset_bottom = 144.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("9_yjec7")
+theme_override_font_sizes/font_size = 65
+text = "0"
+horizontal_alignment = 1
+
 [node name="MsgStartPoint" type="Control" parent="GameUI"]
 layout_mode = 1
 anchors_preset = 0
@@ -206,6 +221,16 @@ offset_left = 10.0
 offset_top = 104.0
 offset_right = 50.0
 offset_bottom = 144.0
+
+[node name="DebugData" type="Label" parent="GameUI"]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -300.0
+offset_right = 500.0
+grow_vertical = 0
 
 [node name="StoreUI" parent="." node_paths=PackedStringArray("score_manager") instance=ExtResource("9_8usfm")]
 score_manager = NodePath("../Managers/ScoreManager")

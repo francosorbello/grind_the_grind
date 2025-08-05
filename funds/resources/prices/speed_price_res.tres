@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_0h5ts")
 initial_price = 3000.0
-coefficient = 3.0
+coefficient = 1.2
 metadata/_custom_type_script = "uid://bgtmtj2ous1md"

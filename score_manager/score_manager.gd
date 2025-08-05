@@ -65,7 +65,7 @@ func increment_grind_points() -> void:
     grind_points.value += stats[Global.StatType.GRIND].value
     if grind_points.value >= _grind_fund_treshold:
         # current_funds.add_funds(10 + grind_points.value * 0.01 as int, Global.FundReason.GRIND_100) # Add 10% of grind points as funds
-        current_funds.add_funds(10, Global.FundReason.GRIND_100) # Add 10% of grind points as funds
+        current_funds.add_funds(50, Global.FundReason.GRIND_100) # Add 10% of grind points as funds
         _grind_fund_treshold += 100
     calculate_current_score()
 
