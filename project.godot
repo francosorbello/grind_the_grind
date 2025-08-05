@@ -40,6 +40,10 @@ window/vsync/vsync_mode=0
 
 enabled=PackedStringArray("res://addons/ftr_tools/plugin.cfg", "res://addons/ninetailsrabbit.indie_blueprint_scene_transition/plugin.cfg")
 
+[gui]
+
+timers/tooltip_delay_sec=0.1
+
 [input]
 
 jump={

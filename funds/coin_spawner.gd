@@ -10,8 +10,13 @@ extends Node3D
 @export var funds_to_add : int = 10
 @export var current_funds : FundRes
 
+@export_group("Debug")
+@export var debug_disable : bool = false
+
 var _path_points : PackedVector3Array
 func _ready():
+	if OS.is_debug_build() and debug_disable:
+		return
 	_path_points = path.get_curve().get_baked_points()
 	
 	spawn_timer.timeout.connect(on_spawn_timer_timeout)
