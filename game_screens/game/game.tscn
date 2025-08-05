@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bocig7usld53w"]
+[gd_scene load_steps=47 format=3 uid="uid://bocig7usld53w"]
 
 [ext_resource type="PackedScene" uid="uid://cvatelahibnjl" path="res://player/player.tscn" id="1_l1rk1"]
 [ext_resource type="Script" uid="uid://bp2gijcc1enr5" path="res://game_screens/game/game.gd" id="1_txhlf"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bo77hwc35sjxe" path="res://score_manager/score_manager.tscn" id="7_slubn"]
 [ext_resource type="PackedScene" uid="uid://4d6flvbws1q4" path="res://ui/store/store_ui.tscn" id="9_8usfm"]
 [ext_resource type="Script" uid="uid://2mnbi61m6kla" path="res://ui/game_ui.gd" id="9_kw303"]
+[ext_resource type="PackedScene" uid="uid://dmutl6118avhm" path="res://debug/debug_console_manager.tscn" id="9_r5hjm"]
 [ext_resource type="FontFile" uid="uid://ca45dnpmcfk5l" path="res://ui/Fonts/Teko-Medium.ttf" id="9_yjec7"]
 [ext_resource type="PackedScene" uid="uid://d0ltewo8asuxs" path="res://funds/funds_manager.tscn" id="10_yw4jq"]
 [ext_resource type="Resource" uid="uid://0f7ppn4ikm4k" path="res://score_manager/score_values/current_score.tres" id="13_om5sn"]
@@ -104,6 +105,8 @@ current_funds = ExtResource("4_0ydko")
 game_ui = NodePath("../../GameUI")
 
 [node name="FundsManager" parent="Managers" instance=ExtResource("10_yw4jq")]
+
+[node name="DebugConsoleManager" parent="Managers" instance=ExtResource("9_r5hjm")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)

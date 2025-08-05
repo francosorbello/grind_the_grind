@@ -23,8 +23,6 @@ func lose_game() -> void:
 func _process(_delta):
 	if Input.is_action_just_released("bail"):
 		lose_game()
-	if Input.is_key_pressed(KEY_M):
-		current_funds.add_funds(1000)
 
 func _on_bail_out_button_pressed() -> void:
 	print("Bail out button pressed")

@@ -24,6 +24,7 @@ general/default_playback_type.web=0
 
 IndieBlueprintSceneTransitioner="*res://addons/ninetailsrabbit.indie_blueprint_scene_transition/src/scene_transitioner.tscn"
 GlobalEventSystem="*res://addons/ftr_tools/global_event_system/global_event_system.gd"
+Console="*res://addons/console/console.gd"
 
 [debug_draw_3d]
 
@@ -38,7 +39,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ftr_tools/plugin.cfg", "res://addons/ninetailsrabbit.indie_blueprint_scene_transition/plugin.cfg")
+enabled=PackedStringArray("res://addons/console/plugin.cfg", "res://addons/ftr_tools/plugin.cfg", "res://addons/ninetailsrabbit.indie_blueprint_scene_transition/plugin.cfg")
 
 [gui]
 

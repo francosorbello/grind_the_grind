@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmutl6118avhm"]
+
+[ext_resource type="Script" uid="uid://cu7at8n7fedph" path="res://debug/debug_console_manager.gd" id="1_7tijc"]
+[ext_resource type="Resource" uid="uid://bfc16jmccsrdj" path="res://funds/resources/current_funds.tres" id="2_u6b4q"]
+
+[node name="DebugConsoleManager" type="Node"]
+script = ExtResource("1_7tijc")
+current_funds = ExtResource("2_u6b4q")
