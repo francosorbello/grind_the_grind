@@ -14,8 +14,8 @@ func increment_by(amount: int) -> void:
 
 func decrement_by(amount: int) -> void:
     value -= amount
-    if value < 0:
-        value = 0  # Ensure value does not go below zero
+    if value < min_value:
+        value = min_value
 
 func reset() -> void:
     value = initial_value
