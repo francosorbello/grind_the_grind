@@ -14,9 +14,11 @@ class_name ScoreManager
 @export_group("UI")
 @export var game_ui : Control
 
-var _grind_fund_treshold : int = 100 #every 100 grind points, funds are added
-var _multiplier_fund_treshold : int = 10 #every 10 tricks, funds are added
+var _grind_fund_treshold : int = 100 #every x grind points, funds are added
+var _multiplier_fund_treshold : int = 10 #every x tricks, funds are added
 
+var _initial_grind_fund_treshold : int = _grind_fund_treshold
+var _initial_multiplier_fund_treshold: int = _multiplier_fund_treshold
 func _ready():
     $GrindingTimer.timeout.connect(on_grinding_timeout)
     for stat in stats.values():
@@ -24,7 +26,9 @@ func _ready():
 
 # increment a stat via ui
 func increment_stat(stat_type: Global.StatType, amount: int) -> void:
+    var _prev_value : int = stats[stat_type].value
     stats[stat_type].increment_by(amount)
+    print("%s incremented from %d to %d"%[Global.StatType.keys()[stat_type],_prev_value,stats[stat_type].value])
     # print("incrementing stat %s by %d" % [stat_type, amount])
     purchase_stat(stat_type)  
 
@@ -66,14 +70,14 @@ func increment_grind_points() -> void:
     if grind_points.value >= _grind_fund_treshold:
         # current_funds.add_funds(10 + grind_points.value * 0.01 as int, Global.FundReason.GRIND_100) # Add 10% of grind points as funds
         current_funds.add_funds(50, Global.FundReason.GRIND_100) # Add 10% of grind points as funds
-        _grind_fund_treshold += 100
+        _grind_fund_treshold += _initial_grind_fund_treshold
     calculate_current_score()
 
 func do_trick() -> void:
     trick_points.value += stats[Global.StatType.TRICK].value
     increment_trick_multiplier()  # Increment the trick multiplier when a trick is done
     calculate_current_score()
-    current_funds.add_funds(2 + int(stats[Global.StatType.TRICK].value * 0.1), Global.FundReason.TRICK_10)
+    current_funds.add_funds(2 + int(stats[Global.StatType.TRICK].value), Global.FundReason.TRICK_10)
     # if trick_multiplier.value >= _multiplier_fund_treshold:
     #     # current_funds.add_funds(5 + stats[Global.StatType.TRICK].value * 0.01 as int, Global.FundReason.TRICK_10) # Add 1% of trick points as funds
     #     current_funds.add_funds(5, Global.FundReason.TRICK_10) # Add 1% of trick points as funds

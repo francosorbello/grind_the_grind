@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bocig7usld53w"]
+[gd_scene load_steps=50 format=3 uid="uid://bocig7usld53w"]
 
 [ext_resource type="PackedScene" uid="uid://cvatelahibnjl" path="res://player/player.tscn" id="1_l1rk1"]
 [ext_resource type="Script" uid="uid://bp2gijcc1enr5" path="res://game_screens/game/game.gd" id="1_txhlf"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://8mgl1i6nimrx" path="res://models/GLB format/floor-wood.glb" id="4_26nvy"]
 [ext_resource type="Script" uid="uid://crx6mk28wv1s2" path="res://game_screens/game/path_visual.gd" id="4_ryayy"]
 [ext_resource type="Resource" uid="uid://cgo4b4r5v3vk7" path="res://score_manager/point_values/trick_points.tres" id="4_slubn"]
+[ext_resource type="PackedScene" uid="uid://dhsr7gf5g8nb" path="res://debug/node_disabler.tscn" id="6_ddh2v"]
 [ext_resource type="PackedScene" uid="uid://bo77hwc35sjxe" path="res://score_manager/score_manager.tscn" id="7_slubn"]
 [ext_resource type="PackedScene" uid="uid://4d6flvbws1q4" path="res://ui/store/store_ui.tscn" id="9_8usfm"]
 [ext_resource type="Script" uid="uid://2mnbi61m6kla" path="res://ui/game_ui.gd" id="9_kw303"]
@@ -24,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://bokkdl1gl3a1l" path="res://ui/tutorial/tutorial.tscn" id="17_pn7ch"]
 [ext_resource type="AudioStream" uid="uid://bhx4bvq3rke14" path="res://music/Musinova - Playful Glitch IDM Electronic.mp3.mp3" id="18_26nvy"]
 [ext_resource type="AudioStream" uid="uid://cas8gff8iex2a" path="res://music/Musinova - Technology Electronic Ambient IDM.mp3.mp3" id="19_isy70"]
+[ext_resource type="Resource" uid="uid://dxlo00b2ovwg2" path="res://score_manager/point_values/trick_multiplier.tres" id="19_mr3ea"]
 [ext_resource type="Texture2D" uid="uid://cd1omkmggytm8" path="res://ui/store/icons/exit.png" id="19_yw4jq"]
 [ext_resource type="PackedScene" uid="uid://dwxnsuwrxi8nr" path="res://models/GLB format/half-pipe.glb" id="21_8c02a"]
 [ext_resource type="Script" uid="uid://cksf1f26q3j4m" path="res://music/music.gd" id="21_8kja6"]
@@ -61,6 +63,9 @@ _data = {
 }
 point_count = 4
 
+[sub_resource type="LabelSettings" id="LabelSettings_mr3ea"]
+font_size = 25
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_om5sn"]
 bg_color = Color(0.472284, 0.561961, 0.923557, 1)
 corner_radius_top_left = 10
@@ -93,9 +98,14 @@ current_funds = ExtResource("4_0ydko")
 transform = Transform3D(20, 0, 0, 0, 2, 0, 0, 0, 20, 0, 0.153154, 0)
 
 [node name="CoinSpawner" parent="." node_paths=PackedStringArray("path") instance=ExtResource("3_4xgoh")]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 path = NodePath("../GrindPath")
 current_funds = ExtResource("4_0ydko")
+
+[node name="NodeDisabler" parent="CoinSpawner" instance=ExtResource("6_ddh2v")]
+process_mode = 3
+disabled = true
 
 [node name="Managers" type="Node" parent="."]
 
@@ -170,6 +180,8 @@ info_msg_scene = ExtResource("15_fuw7p")
 debug_enabled = true
 speed_stat = ExtResource("15_om5sn")
 grind_stat = ExtResource("16_r5hjm")
+trick_points = ExtResource("4_slubn")
+trick_multiplier_debug = ExtResource("19_mr3ea")
 metadata/_edit_use_anchors_ = true
 
 [node name="ComboLabel" type="RichTextLabel" parent="GameUI"]
@@ -231,9 +243,12 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
+offset_left = 10.0
 offset_top = -300.0
-offset_right = 500.0
+offset_right = 510.0
 grow_vertical = 0
+text = "asdfasdf"
+label_settings = SubResource("LabelSettings_mr3ea")
 
 [node name="StoreUI" parent="." node_paths=PackedStringArray("score_manager") instance=ExtResource("9_8usfm")]
 score_manager = NodePath("../Managers/ScoreManager")

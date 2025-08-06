@@ -26,3 +26,10 @@ enum FundReason {
     TRICK_1,
     BOUGHT_UPGRADE,
 }
+
+static func int_to_big(n : int) -> Big:
+    if n > Big.MANTISSA_MAX:
+        var number_of_digits : int = floor(log(n)/log(10))+1
+        print("%d has %d digits"%[n,number_of_digits])
+        return Big.new(float(n)/pow(10,number_of_digits-2),number_of_digits-2)
+    return Big.new(n)

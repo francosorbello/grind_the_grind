@@ -10,6 +10,8 @@ extends Control
 @export var debug_enabled : bool = false
 @export var speed_stat : StatValue
 @export var grind_stat : StatValue
+@export var trick_points : PointValue
+@export var trick_multiplier_debug : PointValue
 
 var info_messages : Dictionary[Global.FundReason, String] = {
 	Global.FundReason.COIN_PICKUP: "Coin collected!",
@@ -24,9 +26,13 @@ func _ready():
 
 func _process(_delta):
 	if OS.is_debug_build() and debug_enabled:
+		var _debug_text : String = ""
 		var grind_fund_recharge = 100.0 * (speed_stat.value/1000.0) / grind_stat.value
-		$DebugData.text = "Grind gives $50 every %.2f seconds (%d ms, %dgpts)"%[grind_fund_recharge,speed_stat.value,grind_stat.value]
-		pass
+		_debug_text = "Grind gives $50 every %.2f seconds (%d ms, %dgpts)"%[grind_fund_recharge,speed_stat.value,grind_stat.value]
+		_debug_text += "\n"
+		_debug_text += "%s points from tricks"%Global.int_to_big(trick_points.value * trick_multiplier_debug.value).toMetricSymbol(true)
+
+		$DebugData.text = _debug_text
 	if current_score:
 		$ScoreLabel.text = current_score.as_big().toMetricSymbol(true) 
 	pass
@@ -39,7 +45,7 @@ func show_combo(grind_score : int, trick_score: int, trick_multiplier: int) -> v
 	combo_label.text = combo_text
 
 func format_grind_score(grind_score: int) -> String:
-	return "%d" % grind_score
+	return "%s" % Big.new(grind_score).toMetricSymbol(true)
 
 func format_trick_score(trick_score: int, trick_multiplier: int) -> String:
 	return "%d x %d" % [trick_score, trick_multiplier]

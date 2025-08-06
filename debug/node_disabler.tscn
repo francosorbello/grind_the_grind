@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhsr7gf5g8nb"]
+
+[ext_resource type="Script" uid="uid://6ke7igv468k6" path="res://debug/node_disabler.gd" id="1_wqksl"]
+
+[node name="NodeDisabler" type="Node"]
+script = ExtResource("1_wqksl")
