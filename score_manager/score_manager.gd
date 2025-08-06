@@ -18,9 +18,14 @@ var _grind_fund_treshold : int = 100 #every x grind points, funds are added
 var _multiplier_fund_treshold : int = 10 #every x tricks, funds are added
 
 var _initial_grind_fund_treshold : int = _grind_fund_treshold
-var _initial_multiplier_fund_treshold: int = _multiplier_fund_treshold
+var _initial_multiplier_fund_treshold : int = _multiplier_fund_treshold
+
+var _funds_manager : FundsManager
+var _number_of_tricks : int = 0
+
 func _ready():
     $GrindingTimer.timeout.connect(on_grinding_timeout)
+    _funds_manager = get_parent().get_node("FundsManager")
     for stat in stats.values():
         stat.reset()  # Reset all stats to their initial values when the game starts
 
@@ -66,11 +71,15 @@ func increment_speed():
 
 # increment grind points while grinding
 func increment_grind_points() -> void:
-    grind_points.value += stats[Global.StatType.GRIND].value
+    # Points obtanied while grinding
+    var grind_upgrade_level = _funds_manager.prices[Global.StatType.GRIND].number_of_upgrades
+    grind_points.value += GrindScoreCalculator.calculate(stats[Global.StatType.GRIND].value,grind_upgrade_level+1)
+
+    # give money when player does x amount of points
     if grind_points.value >= _grind_fund_treshold:
-        # current_funds.add_funds(10 + grind_points.value * 0.01 as int, Global.FundReason.GRIND_100) # Add 10% of grind points as funds
-        current_funds.add_funds(50, Global.FundReason.GRIND_100) # Add 10% of grind points as funds
+        current_funds.add_funds(50, Global.FundReason.GRIND_100) 
         _grind_fund_treshold += _initial_grind_fund_treshold
+
     calculate_current_score()
 
 func do_trick() -> void:
@@ -78,13 +87,12 @@ func do_trick() -> void:
     increment_trick_multiplier()  # Increment the trick multiplier when a trick is done
     calculate_current_score()
     current_funds.add_funds(2 + int(stats[Global.StatType.TRICK].value), Global.FundReason.TRICK_10)
-    # if trick_multiplier.value >= _multiplier_fund_treshold:
-    #     # current_funds.add_funds(5 + stats[Global.StatType.TRICK].value * 0.01 as int, Global.FundReason.TRICK_10) # Add 1% of trick points as funds
-    #     current_funds.add_funds(5, Global.FundReason.TRICK_10) # Add 1% of trick points as funds
-    #     _multiplier_fund_treshold += 10
 
 func increment_trick_multiplier():
-    trick_multiplier.value += 1 
+    _number_of_tricks+=1
+    if _number_of_tricks > 10:
+        _number_of_tricks = 0
+        trick_multiplier.value += 1 
 
 # calculate the current score based on grind points and trick multiplier
 func calculate_current_score() -> int:

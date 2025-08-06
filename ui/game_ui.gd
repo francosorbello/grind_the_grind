@@ -39,13 +39,16 @@ func _process(_delta):
 
 func show_combo(grind_score : int, trick_score: int, trick_multiplier: int) -> void:
 	var combo_text = format_grind_score(grind_score)
-	if trick_multiplier > 0 and trick_score > 0:
-		combo_text +=" + "+format_trick_score(trick_score, trick_multiplier) 
+	if trick_score > 0:
+		if trick_multiplier > 1:
+			combo_text +=" + "+format_trick_score(trick_score, trick_multiplier) 
+		else:
+			combo_text +=" + "+Global.int_to_big(trick_score).toMetricSymbol(true)
 
 	combo_label.text = combo_text
 
 func format_grind_score(grind_score: int) -> String:
-	return "%s" % Big.new(grind_score).toMetricSymbol(true)
+	return "%s" % Global.int_to_big(grind_score).toMetricSymbol(true)
 
 func format_trick_score(trick_score: int, trick_multiplier: int) -> String:
 	return "%d x %d" % [trick_score, trick_multiplier]
