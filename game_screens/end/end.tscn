@@ -50,11 +50,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.407843, 0.498039, 0.898039, 1)
 
-[node name="EndController" type="Node" parent="." node_paths=PackedStringArray("score_label")]
+[node name="EndController" type="Node" parent="." node_paths=PackedStringArray("score_label", "nan_label")]
 script = ExtResource("1_6hflv")
 game_s = "res://game_screens/game/game.tscn"
 score = ExtResource("3_8s13h")
 score_label = NodePath("../VBoxContainer/ScoreLabel")
+nan_label = NodePath("../VBoxContainer/NanLabel")
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="EndController"]
 stream = ExtResource("3_l4m8a")
@@ -159,6 +160,19 @@ layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("1_wd8fe")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
+text = "Your score: 1000"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NanLabel" type="RichTextLabel" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_wd8fe")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[color=FFAAA0] You broke the game! Yay! [/color]"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1

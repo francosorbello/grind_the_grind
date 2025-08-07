@@ -34,7 +34,10 @@ func _process(_delta):
 
 		$DebugData.text = _debug_text
 	if current_score:
-		$ScoreLabel.text = current_score.as_big().toMetricSymbol(true) 
+		if current_score.value > -1:
+			$ScoreLabel.text = current_score.as_big().toMetricSymbol(true)
+		else:
+			$ScoreLabel.text = "NaN" 
 	pass
 
 func show_combo(grind_score : int, trick_score: int, trick_multiplier: int) -> void:

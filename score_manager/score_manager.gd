@@ -21,6 +21,8 @@ var _initial_grind_fund_treshold : int = _grind_fund_treshold
 var _funds_manager : FundsManager
 var _number_of_tricks : int = 0
 
+signal max_score_reached
+
 func _ready():
     $GrindingTimer.timeout.connect(on_grinding_timeout)
     _funds_manager = get_parent().get_node("FundsManager")
@@ -94,7 +96,12 @@ func increment_trick_multiplier():
 
 # calculate the current score based on grind points and trick multiplier
 func calculate_current_score() -> int:
-    var total_score = grind_points.value + trick_multiplier.value * trick_points.value 
+    var total_score = grind_points.value + trick_multiplier.value * trick_points.value
+    if total_score > Global.MAX_INT:
+        total_score = -1
+        print("MAX SCORE REACHED")
+        max_score_reached.emit()
+        pass
     current_score.value = total_score
     # print("current score: ",current_score.value)
     game_ui.show_combo(grind_points.value, trick_points.value, trick_multiplier.value)

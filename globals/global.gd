@@ -36,6 +36,8 @@ enum ModType {
     SKATE_GOLD
 }
 
+const MAX_INT : int = 9200000000000000000
+
 static func int_to_big(n : int) -> Big:
     if n > Big.MANTISSA_MAX:
         var number_of_digits : int = floor(log(n)/log(10))+1

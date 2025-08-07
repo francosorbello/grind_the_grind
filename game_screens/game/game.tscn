@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bocig7usld53w"]
+[gd_scene load_steps=51 format=3 uid="uid://bocig7usld53w"]
 
 [ext_resource type="PackedScene" uid="uid://cvatelahibnjl" path="res://player/player.tscn" id="1_l1rk1"]
 [ext_resource type="Script" uid="uid://bp2gijcc1enr5" path="res://game_screens/game/game.gd" id="1_txhlf"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dmutl6118avhm" path="res://debug/debug_console_manager.tscn" id="9_r5hjm"]
 [ext_resource type="FontFile" uid="uid://ca45dnpmcfk5l" path="res://ui/Fonts/Teko-Medium.ttf" id="9_yjec7"]
 [ext_resource type="PackedScene" uid="uid://d0ltewo8asuxs" path="res://funds/funds_manager.tscn" id="10_yw4jq"]
+[ext_resource type="Resource" uid="uid://0bcgtott1ftl" path="res://score_manager/point_values/grind_points.tres" id="11_bvmav"]
 [ext_resource type="Resource" uid="uid://0f7ppn4ikm4k" path="res://score_manager/score_values/current_score.tres" id="13_om5sn"]
 [ext_resource type="PackedScene" uid="uid://c1f6nlxrlajff" path="res://ui/info_message.tscn" id="15_fuw7p"]
 [ext_resource type="Resource" uid="uid://cu5xew64i5jj6" path="res://score_manager/stat_values/SpeedStat.tres" id="15_om5sn"]
@@ -115,6 +116,7 @@ game_ui = NodePath("../../GameUI")
 [node name="FundsManager" parent="Managers" instance=ExtResource("10_yw4jq")]
 
 [node name="DebugConsoleManager" parent="Managers" instance=ExtResource("9_r5hjm")]
+grind_points = ExtResource("11_bvmav")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -409,5 +411,6 @@ transform = Transform3D(-1.00141, 0, -0.93082, 0, 1, 0, 2.55045, 0, -0.365478, 6
 [node name="UIFixer" type="Node" parent="."]
 script = ExtResource("32_epgd6")
 
+[connection signal="max_score_reached" from="Managers/ScoreManager" to="." method="_on_score_manager_max_score_reached"]
 [connection signal="pressed" from="StoreUI/BailOutButton" to="." method="_on_bail_out_button_pressed"]
 [connection signal="timeout" from="Music/StartTimer" to="Music" method="_on_start_timer_timeout"]

@@ -28,3 +28,7 @@ func _on_bail_out_button_pressed() -> void:
 	print("Bail out button pressed")
 	lose_game()
 	pass # Replace with function body.
+
+func _on_score_manager_max_score_reached() -> void:
+	lose_game()
+	pass # Replace with function body.
