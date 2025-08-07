@@ -98,14 +98,12 @@ current_funds = ExtResource("4_0ydko")
 transform = Transform3D(20, 0, 0, 0, 2, 0, 0, 0, 20, 0, 0.153154, 0)
 
 [node name="CoinSpawner" parent="." node_paths=PackedStringArray("path") instance=ExtResource("3_4xgoh")]
-process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 path = NodePath("../GrindPath")
 current_funds = ExtResource("4_0ydko")
 
 [node name="NodeDisabler" parent="CoinSpawner" instance=ExtResource("6_ddh2v")]
 process_mode = 3
-disabled = true
 
 [node name="Managers" type="Node" parent="."]
 
@@ -177,7 +175,6 @@ script = ExtResource("9_kw303")
 current_funds = ExtResource("4_0ydko")
 current_score = ExtResource("13_om5sn")
 info_msg_scene = ExtResource("15_fuw7p")
-debug_enabled = true
 speed_stat = ExtResource("15_om5sn")
 grind_stat = ExtResource("16_r5hjm")
 trick_points = ExtResource("4_slubn")
@@ -238,6 +235,7 @@ offset_right = 50.0
 offset_bottom = 144.0
 
 [node name="DebugData" type="Label" parent="GameUI"]
+visible = false
 custom_minimum_size = Vector2(500, 300)
 layout_mode = 1
 anchors_preset = 2

@@ -15,10 +15,8 @@ class_name ScoreManager
 @export var game_ui : Control
 
 var _grind_fund_treshold : int = 100 #every x grind points, funds are added
-var _multiplier_fund_treshold : int = 10 #every x tricks, funds are added
 
 var _initial_grind_fund_treshold : int = _grind_fund_treshold
-var _initial_multiplier_fund_treshold : int = _multiplier_fund_treshold
 
 var _funds_manager : FundsManager
 var _number_of_tricks : int = 0

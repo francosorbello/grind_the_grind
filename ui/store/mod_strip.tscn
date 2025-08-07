@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://5cy0m1fedex0"]
+
+[ext_resource type="Texture2D" uid="uid://42es5cmn1u21" path="res://ui/store/icons/star.png" id="1_1d2cs"]
+[ext_resource type="FontFile" uid="uid://ca45dnpmcfk5l" path="res://ui/Fonts/Teko-Medium.ttf" id="1_racvi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1d2cs"]
+bg_color = Color(0.811765, 0.313726, 0.713726, 1)
+border_width_left = 7
+shadow_color = Color(0, 0, 0, 0.164706)
+shadow_offset = Vector2(1, 5)
+
+[node name="ModStrip" type="Control"]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 400.0
+offset_bottom = 100.0
+
+[node name="ButtonContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Button" type="Button" parent="ButtonContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_racvi")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_1d2cs")
+text = "🥉Title"
+icon = ExtResource("1_1d2cs")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="Button2" type="Button" parent="ButtonContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_racvi")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_1d2cs")
+text = "🥉Title"
+icon = ExtResource("1_1d2cs")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="Button3" type="Button" parent="ButtonContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_racvi")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_1d2cs")
+text = "🥉Title"
+icon = ExtResource("1_1d2cs")
+icon_alignment = 1
+vertical_icon_alignment = 0

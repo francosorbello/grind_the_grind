@@ -3,28 +3,28 @@ extends Control
 @export var score_manager : ScoreManager
 
 func _ready():
-	$VBoxContainer.scale = Vector2(1, 0)  # Start collapsed
+	$UpgradesContainer.scale = Vector2(1, 0)  # Start collapsed
 
 
 func open():
 	var tween = create_tween()
-	tween.tween_property($VBoxContainer, "scale", Vector2(1, 1), 0.2)
+	tween.tween_property($UpgradesContainer, "scale", Vector2(1, 1), 0.2)
 
 func close():
 	var tween = create_tween()
-	tween.tween_property($VBoxContainer, "scale", Vector2(1, 0), 0.2)
+	tween.tween_property($UpgradesContainer, "scale", Vector2(1, 0), 0.2)
 	$TutorialNotifier.notify()
 
 
 func _on_close_button_pressed() -> void:
 	close()
-	$OpenButton.visible = true
+	$Buttons/OpenButton.visible = true
 	$ClickSound.play()
 	pass # Replace with function body.
 
 
 func _on_open_button_pressed() -> void:
-	$OpenButton.visible = false
+	$Buttons/OpenButton.visible = false
 	open()
 	$ClickSound.play()
 

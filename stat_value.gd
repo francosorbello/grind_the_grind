@@ -7,6 +7,8 @@ class_name StatValue
 @export var min_value: int = 0
 @export var max_value: int = 0
 
+signal min_reached
+
 func increment_by(amount: int) -> void:
     value += amount
     if max_value > 0 and value > max_value:
@@ -15,6 +17,7 @@ func increment_by(amount: int) -> void:
 func decrement_by(amount: int) -> void:
     value -= amount
     if value < min_value:
+        min_reached.emit()
         value = min_value
 
 func reset() -> void:

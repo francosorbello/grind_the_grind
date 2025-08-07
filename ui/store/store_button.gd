@@ -1,4 +1,5 @@
 extends Control
+class_name StoreButton
 
 @export var stat_type : Global.StatType
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://4d6flvbws1q4"]
+[gd_scene load_steps=19 format=3 uid="uid://4d6flvbws1q4"]
 
 [ext_resource type="Script" uid="uid://bd80up3oagytd" path="res://ui/store/store_ui.gd" id="1_kv461"]
 [ext_resource type="FontFile" uid="uid://ca45dnpmcfk5l" path="res://ui/Fonts/Teko-Medium.ttf" id="3_1w4gj"]
@@ -8,7 +8,26 @@
 [ext_resource type="Resource" uid="uid://ci5udx1olo1es" path="res://funds/resources/prices/speed_price_res.tres" id="4_57mig"]
 [ext_resource type="Resource" uid="uid://dx8w4hiw0hr10" path="res://funds/resources/prices/trick_price_res.tres" id="5_57mig"]
 [ext_resource type="AudioStream" uid="uid://csafkl2yg48y7" path="res://ui/click_001.ogg" id="5_heb3s"]
+[ext_resource type="Script" uid="uid://bfn118j72t81h" path="res://ui/store/store_button_speed.gd" id="5_u76wc"]
 [ext_resource type="PackedScene" uid="uid://b47nav4x013eg" path="res://ui/tutorial/tutorial_notifier.tscn" id="6_5r3wb"]
+[ext_resource type="Resource" uid="uid://cu5xew64i5jj6" path="res://score_manager/stat_values/SpeedStat.tres" id="6_aot2t"]
+[ext_resource type="PackedScene" uid="uid://5cy0m1fedex0" path="res://ui/store/mod_strip.tscn" id="11_17o0r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yavlx"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 1)
+skew = Vector2(0, 0.065)
+
+[sub_resource type="LabelSettings" id="LabelSettings_17o0r"]
+font = ExtResource("3_1w4gj")
+font_size = 50
+font_color = Color(0.811765, 0.313726, 0.713726, 1)
+outline_color = Color(0.811765, 0.313726, 0.713726, 1)
+shadow_size = 0
+shadow_offset = Vector2(1, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1w4gj"]
 bg_color = Color(1, 0.397701, 0.329255, 1)
@@ -37,7 +56,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kv461")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="UpgradesContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 1
 anchors_preset = 11
@@ -49,21 +68,32 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="UpgradeGrind" parent="VBoxContainer" instance=ExtResource("3_kv461")]
+[node name="Title" type="Label" parent="UpgradesContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_yavlx")
+text = "UPGRADES"
+label_settings = SubResource("LabelSettings_17o0r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeGrind" parent="UpgradesContainer" instance=ExtResource("3_kv461")]
 layout_mode = 2
 related_price = ExtResource("3_maj30")
 
-[node name="UpgradeSpeed" parent="VBoxContainer" instance=ExtResource("3_kv461")]
+[node name="UpgradeSpeed" parent="UpgradesContainer" instance=ExtResource("3_kv461")]
 layout_mode = 2
+script = ExtResource("5_u76wc")
+speed_stat = ExtResource("6_aot2t")
 stat_type = 1
 related_price = ExtResource("4_57mig")
 
-[node name="UpgradeTrick" parent="VBoxContainer" instance=ExtResource("3_kv461")]
+[node name="UpgradeTrick" parent="UpgradesContainer" instance=ExtResource("3_kv461")]
 layout_mode = 2
 stat_type = 2
 related_price = ExtResource("5_57mig")
 
-[node name="CloseButton" type="Button" parent="VBoxContainer"]
+[node name="CloseButton" type="Button" parent="UpgradesContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_1w4gj")
@@ -72,16 +102,28 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_1w4gj")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kv461")
 text = "CLOSE"
 
-[node name="OpenButton" type="Button" parent="."]
-z_index = 285
-texture_filter = 1
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_heb3s")
+volume_db = -5.0
+
+[node name="TutorialNotifier" parent="." instance=ExtResource("6_5r3wb")]
+mesage = "store_closed"
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(120, 500)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -118.0
-offset_bottom = 80.0
+offset_left = -40.0
+offset_bottom = 40.0
 grow_horizontal = 0
+
+[node name="OpenButton" type="Button" parent="Buttons"]
+z_index = 285
+texture_filter = 1
+custom_minimum_size = Vector2(118, 80)
+layout_mode = 2
 theme_override_fonts/font = ExtResource("3_1w4gj")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/hover = SubResource("StyleBoxFlat_5r3wb")
@@ -90,15 +132,46 @@ icon = ExtResource("4_1w4gj")
 icon_alignment = 1
 expand_icon = true
 
-[node name="ClickSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_heb3s")
-volume_db = -5.0
+[node name="ModsContainer" type="VBoxContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
 
-[node name="TutorialNotifier" parent="." instance=ExtResource("6_5r3wb")]
-mesage = "store_closed"
+[node name="Title" type="Label" parent="ModsContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_yavlx")
+text = "UPGRADES"
+label_settings = SubResource("LabelSettings_17o0r")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[connection signal="on_store_button_pressed" from="VBoxContainer/UpgradeGrind" to="." method="_on_upgrade_stat"]
-[connection signal="on_store_button_pressed" from="VBoxContainer/UpgradeSpeed" to="." method="_on_upgrade_stat"]
-[connection signal="on_store_button_pressed" from="VBoxContainer/UpgradeTrick" to="." method="_on_upgrade_stat"]
-[connection signal="pressed" from="VBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
-[connection signal="pressed" from="OpenButton" to="." method="_on_open_button_pressed"]
+[node name="ModStrip" parent="ModsContainer" instance=ExtResource("11_17o0r")]
+layout_mode = 2
+
+[node name="ModStrip2" parent="ModsContainer" instance=ExtResource("11_17o0r")]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="ModsContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1w4gj")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxFlat_1w4gj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kv461")
+text = "CLOSE"
+
+[connection signal="on_store_button_pressed" from="UpgradesContainer/UpgradeGrind" to="." method="_on_upgrade_stat"]
+[connection signal="on_store_button_pressed" from="UpgradesContainer/UpgradeSpeed" to="." method="_on_upgrade_stat"]
+[connection signal="on_store_button_pressed" from="UpgradesContainer/UpgradeTrick" to="." method="_on_upgrade_stat"]
+[connection signal="pressed" from="UpgradesContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="Buttons/OpenButton" to="." method="_on_open_button_pressed"]
+[connection signal="pressed" from="ModsContainer/CloseButton" to="." method="_on_close_button_pressed"]
