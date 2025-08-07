@@ -21,6 +21,7 @@ func handle_sm_input(event: InputEvent) -> void:
 	if event.is_action_released("trick") and $TrickAnimTimer.is_stopped():
 		var trick_anim_time = owner.do_trick(owner.trick_moves[event.keycode])
 		$TrickAnimTimer.start(trick_anim_time)
+		$TutorialNotifier.notify()
 
 func exit():
 	$GrindSound.stop()

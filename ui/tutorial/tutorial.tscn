@@ -131,7 +131,7 @@ grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("1_tkdws")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[pulse freq=1.0 color=#ffffff80 ease=-1.0]While on the air, press [color=FFAAA0] [Z/X/C] [/color] to do tricks.[/pulse]"
+text = "[pulse freq=1.0 color=#ffffff80 ease=-1.0]Press [color=FFAAA0] [Z/X/C] [/color] to do tricks.[/pulse]"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1
@@ -164,7 +164,8 @@ grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("1_tkdws")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[pulse freq=1.0 color=#ffffff80 ease=-1.0]Rack up points and money by [color=FFAAA0] [GRINDING] and [DOING TRICKS] [/color]![/pulse]"
+text = "[pulse freq=1.0 color=#ffffff80 ease=-1.0]Rack up points and money by [color=FFAAA0] [COLLECTING COINS] [/color],
+ [color=FFAAA0] [GRINDING] [/color] and[color=FFAAA0] [DOING TRICKS] [/color]![/pulse]"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1

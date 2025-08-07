@@ -274,7 +274,6 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Tutorial" parent="." instance=ExtResource("17_pn7ch")]
-debug_disabled = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamPlaylist_2brpg")

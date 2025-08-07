@@ -5,7 +5,6 @@ extends Control
 @export var debug_disabled : bool = false
 
 var _tutorial_active : bool = false
-var _jump_done : bool = false
 var _trick_done : bool = false
 var _store_closed : bool = false
 
@@ -18,7 +17,7 @@ func _ready() -> void:
 
 
 func _on_timer_timeout() -> void:
-    $JumpText.visible = true
+    $TrickText.visible = true
     _tutorial_active = true
 
     
@@ -27,14 +26,8 @@ func _on_global_event(event, message: Dictionary) -> void:
         return
     if event == GlobalEventSystem.GameEvent.GE_TUTORIAL:
         match message["tutorial"]:
-            "jump":
-                if _jump_done:
-                    return
-                $JumpText.visible = false
-                $TrickText.visible = true
-                _jump_done = true
             "trick":
-                if _trick_done or not _jump_done:
+                if _trick_done:
                     return
                 $TrickText.visible = false
                 _trick_done = true

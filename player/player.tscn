@@ -59,6 +59,9 @@ script = ExtResource("5_tqiix")
 [node name="GrindState" type="Node" parent="StateMachine"]
 script = ExtResource("7_boad6")
 
+[node name="TutorialNotifier" parent="StateMachine/GrindState" instance=ExtResource("10_c35mf")]
+mesage = "trick"
+
 [node name="GrindSound" type="AudioStreamPlayer" parent="StateMachine/GrindState"]
 stream = ExtResource("6_2ieo8")
 
@@ -98,9 +101,6 @@ stream = ExtResource("5_qjkh3")
 stream = ExtResource("13_kb6p2")
 volume_db = -80.0
 script = ExtResource("14_wodsf")
-
-[node name="TutorialNotifier" parent="StateMachine/OnAirState" instance=ExtResource("10_c35mf")]
-mesage = "trick"
 
 [node name="DeadState" type="Node" parent="StateMachine"]
 script = ExtResource("16_e7oew")
